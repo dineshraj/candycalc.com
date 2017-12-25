@@ -2,6 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const env = process.env.NODE_ENV || 'production';
 const isProduction = (env === 'production');
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 function getPlugins() {
   return [
@@ -10,6 +11,7 @@ function getPlugins() {
         NODE_ENV: JSON.stringify(env)
       }
     }),
+    new ExtractTextPlugin({ filename: 'bundle.css' }),
     ...isProduction ? getProductionPlugins() : []
   ]
 }
@@ -33,12 +35,19 @@ module.exports = {
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        loaders: ['babel-loader']
+        use: ['babel-loader']
       },
       {
         test: /\.scss$/,
-        loaders: ['style-loader', 'css-loader', 'sass-loader']
-      }
+        use: ExtractTextPlugin.extract({
+          fallback: "style-loader",
+          use: ['css-loader', 'sass-loader']
+        })
+      },
+      {
+        test: /\.(png|jpg)$/,
+        use: ['url-loader']
+       }
     ]
   },
   resolve: {
