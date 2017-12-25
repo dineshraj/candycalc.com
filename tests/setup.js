@@ -12,7 +12,7 @@ configure({ adapter: new ReactSixteenAdapter() });
 const JSDOM = require('jsdom').JSDOM;
 
 //get window and documnet
-const dom = new JSDOM('<!doctype html><html><body><div id="candy-calc-app"></div></body></html>');
+const dom = new JSDOM('<!doctype html><html><body><div id="candy-calc"></div></body></html>');
 
 global.window = dom.window;
 global.document = dom.window.document;
