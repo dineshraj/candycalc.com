@@ -1,5 +1,7 @@
 import React from 'react';
 
+import Header from '../components/Header';
+
 class App extends React.Component {
   render() {
     /*
@@ -25,7 +27,7 @@ class App extends React.Component {
       -- Footer
     */
     return (
-      <div>Candy Calculator</div>
+      <Header />
     );
   }
 };

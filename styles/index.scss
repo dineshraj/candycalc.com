@@ -1,0 +1,23 @@
+@import './utils/breakpoints';
+@import './components/header';
+@import './components/ad';
+
+$background-color: #7dad73;
+$app-background-color: #79c9fa;
+
+body {
+  background-color: $background-color;
+  font-family: helvetica neue, helvetica, arial, sans-serif;
+  font-size: 18px;
+  height: 100%;
+  margin: 0;
+  overflow-x: hidden;
+  padding: 0;
+  width: 100%;
+}
+
+#candy-calc {
+  background: url('../static/bg.jpg') repeat-x bottom;
+  background-color: $app-background-color;
+  padding-bottom: 200px;
+}

@@ -1,0 +1,16 @@
+$breakpoint-med-val: 768px;
+$breakpoint-large-val: 850px;
+
+$breakpoint-med: 'only screen and (min-width:#{$breakpoint-med-val})';
+$breakpoint-large: 'only screen and (min-width:#{$breakpoint-large-val})';
+
+@mixin bp($breakpoint) {
+    @if $breakpoint == 'med' {
+        @media #{$breakpoint-med} { @content; }
+    }
+
+    @if $breakpoint == 'large' {
+        @media #{$breakpoint-large} { @content; }
+    }
+
+}

@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import App from './containers/App.jsx';
-import pokemon from './lib/pokemon.json';
+import pokemon from './static/pokemon.json';
 
 import './styles/index.scss';
 
