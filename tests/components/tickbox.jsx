@@ -1,6 +1,5 @@
 import assert from 'assert';
 import { shallow } from 'enzyme';
-import sinon from 'sinon';
 
 import React from 'react';
 import TickBox from '../../components/TickBox';
@@ -45,6 +44,6 @@ describe('<TickBox />', () => {
     assert.equal(tickBox.find('.tick-box__input').prop('checked'), '');
     tickBox.setState({ checked: true });
     assert.equal(tickBox.find('.tick-box__input').prop('checked'), 'checked');
-  })
+  });
 
 });

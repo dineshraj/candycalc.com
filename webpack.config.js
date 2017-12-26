@@ -2,7 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const env = process.env.NODE_ENV || 'production';
 const isProduction = (env === 'production');
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 function getPlugins() {
   return [
@@ -13,7 +13,7 @@ function getPlugins() {
     }),
     new ExtractTextPlugin({ filename: 'bundle.css' }),
     ...isProduction ? getProductionPlugins() : []
-  ]
+  ];
 }
 
 function getProductionPlugins() {
@@ -40,14 +40,14 @@ module.exports = {
       {
         test: /\.scss$/,
         use: ExtractTextPlugin.extract({
-          fallback: "style-loader",
+          fallback: 'style-loader',
           use: ['css-loader', 'sass-loader']
         })
       },
       {
         test: /\.(png|jpg)$/,
         use: ['url-loader']
-       }
+      }
     ]
   },
   resolve: {

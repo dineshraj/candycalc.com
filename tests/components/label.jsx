@@ -12,8 +12,8 @@ describe('<Label />', () => {
   });
 
   it('takes in a id an label props and displays them correctly', () => {
-    const id = "some-id";
-    const labelText = "some-label";
+    const id = 'some-id';
+    const labelText = 'some-label';
     const label = shallow(<Label id={id} label={labelText} />);
 
     assert.equal(label.find('.label').prop('htmlFor'), id);
@@ -21,7 +21,8 @@ describe('<Label />', () => {
   });
 
   it('takes class prop if provided', () => {
-    const label = shallow(<Label additionalClass="checked" />);
+    const label = shallow(<Label additionalClass='checked' />);
     assert.equal(label.prop('className'), 'label checked');
-  })
+  });
+
 });

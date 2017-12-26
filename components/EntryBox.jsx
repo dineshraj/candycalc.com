@@ -9,4 +9,4 @@ export default ({ id, label, changeCallback }) => {
       <input className="entry-box__input" id={id} name={id} maxLength="3" autoComplete="off" type="number" onChange={changeCallback} />
     </div>
   );
-}
+};

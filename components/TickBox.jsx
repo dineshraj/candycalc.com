@@ -26,7 +26,7 @@ class TickBox extends React.Component {
         <Label id={id} label={this.props.label} additionalClass={labelClass} />
         <input className="tick-box__input" id={id} name={id} type="checkbox" value={id} onClick={this._toggleCheckedValue.bind(this)} checked={isChecked} />
       </div>
-    )
+    );
   }
 }
 

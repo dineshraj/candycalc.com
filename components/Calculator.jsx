@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import Search from './Search';
 import Message from './Message';
 import EntryBox from './EntryBox';
@@ -10,11 +10,11 @@ function _submitCalculator() {
 
 function _processPokemon(pokemon) {
   return pokemon.map((item) => {
-      return {
-        groupId: item[1],
-        label: item[0],
-        value: item[1]
-      };
+    return {
+      groupId: item[1],
+      label: item[0],
+      value: item[1]
+    };
   });
 }
 
@@ -31,4 +31,4 @@ export default ({ groups, pokemon }) => {
       </form>
     </div>
   );
-}
+};

@@ -1,5 +1,5 @@
-import React from 'react'
-import { SimpleSelect } from "react-selectize";
+import React from 'react';
+import { SimpleSelect } from 'react-selectize';
 
 export default ({ placeholder, groups, pokemon }) => {
 
@@ -11,5 +11,5 @@ export default ({ placeholder, groups, pokemon }) => {
       options={pokemon}
       defaultValue = {{label: pokemon[0].label, value: pokemon[0].value}}
     />
-  )
-}
+  );
+};

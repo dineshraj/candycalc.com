@@ -12,7 +12,7 @@ describe('<Message />', () => {
   });
 
   it('takes in a message prop and displays it correctly', () => {
-    const messageText = "This is a messsage";
+    const messageText = 'This is a messsage';
     const message = shallow(<Message message={messageText} />);
     assert.equal(message.text(), messageText);
   });

@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default ({ id, label, additionalClass = '' }) => {;
+export default ({ id, label, additionalClass = '' }) => {
   const labelClass = `label ${additionalClass}`;
 
   return (

@@ -1,4 +1,4 @@
-import assert from 'assert'
+import assert from 'assert';
 import { shallow } from 'enzyme';
 
 import React from 'react';
@@ -17,7 +17,7 @@ describe('<App />', () => {
   it('renders the Ads', () => {
     const app = shallow(<App />);
     assert.equal(app.find(Ad).length, 2);
-  })
+  });
 
   it('renders the Calculator', () => {
     const app = shallow(<App />);

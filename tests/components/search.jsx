@@ -3,27 +3,11 @@ import { shallow } from 'enzyme';
 
 import React from 'react';
 import Search from '../../components/Search';
-import { SimpleSelect } from "react-selectize";
-
-const data = {
-  "groups": [
-    {
-      "groupId": "12",
-      "title": "12 Candies"
-    }, {
-      "groupId": "25",
-      "title": "25 Candies"
-    }
-  ],
-  "pokemon": [
-    ["Caterpie", "12"],
-    ["Rattata", "25"]
-  ]
-};
+import { SimpleSelect } from 'react-selectize';
 
 const pokemonData = [
   ['pokemon', 'candy']
-]
+];
 
 describe('<Search />', () => {
 
