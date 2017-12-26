@@ -1,0 +1,12 @@
+$text-color: #ffffff;
+$background: rgba(2525, 255, 255, 0.3);
+
+.message {
+  background-color: $background;
+  border-radius: 3px;
+  box-sizing: border-box;
+  color: $text-color;
+  margin: 30px 0;
+  padding: 10px;
+  text-align: center;
+}

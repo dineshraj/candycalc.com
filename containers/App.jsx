@@ -2,9 +2,10 @@ import React from 'react';
 
 import Header from '../components/Header';
 import Ad from '../components/Ad';
-import Form from '../components/Form';
+import Calculator from '../components/Calculator';
+import data from '../static/data.json';
 
-const App = (data) => {
+const App = (props) => {
   /*
   App
     |
@@ -24,13 +25,11 @@ const App = (data) => {
          -- Button
     -- Footer
   */
-  console.log('aaa', data);
-
   return (
     <div>
       <Header />
       <Ad client="ca-pub-9464301444690248" slot="1890101450" />
-      <Form groups={data.groups} pokemon={data.pokemon} />
+      <Calculator groups={data.groups} pokemon={data.pokemon} />
       <Ad client="ca-pub-9464301444690248" slot="3223573855" />
     </div>
   );

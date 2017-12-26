@@ -21,24 +21,27 @@ const data = {
   ]
 };
 
+const pokemonData = [
+  ['pokemon', 'candy']
+]
+
 describe('<Search />', () => {
 
   it('renders the search component correctly', () => {
-    const search = shallow(<Search pokemon={[]}/>);
+    const search = shallow(<Search pokemon={pokemonData}/>);
 
     assert.equal(search.find(SimpleSelect).length, 1);
     assert.equal(search.prop('className'), 'search');
   });
 
   it('accepts the placeholder property', () => {
-    const search = shallow(<Search placeholder="some-placeholder" pokemon={[]}/>);
+    const search = shallow(<Search placeholder="some-placeholder" pokemon={pokemonData}/>);
     assert.equal(search.prop('placeholder'), 'some-placeholder');
   });
 
   it('sets the group and options propeties on the SimpleSelect component', () => {
     const groupStub = 'testGroup';
-    const pokemonStub = [['pokemon', 'candy']];
-    const expectedOptionStub = [{
+    const pokemonStub = [{
       groupId: 'candy',
       label: 'pokemon',
       value: 'candy'
@@ -46,7 +49,20 @@ describe('<Search />', () => {
     const form = shallow(<Search groups={groupStub} pokemon={pokemonStub} />);
 
     assert.deepEqual(form.find(SimpleSelect).prop('groups'), groupStub);
-    assert.deepEqual(form.find(SimpleSelect).prop('options'), expectedOptionStub);
+    assert.deepEqual(form.find(SimpleSelect).prop('options'), pokemonStub);
+  });
+
+  it('sets the default value property on the SimpleSelect component', () => {
+    const groupStub = 'testGroup';
+    const pokemonStub = [{
+      groupId: 'candy',
+      label: 'pokemon',
+      value: 'candy'
+    }];
+
+    const form = shallow(<Search groups={groupStub} pokemon={pokemonStub} />);
+
+    assert.deepEqual(form.find(SimpleSelect).prop('defaultValue'), {label: 'pokemon', value: 'candy'});
   });
 
 });

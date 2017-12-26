@@ -1,6 +1,10 @@
 @import './utils/breakpoints';
+@import './lib/selectize';
 @import './components/header';
 @import './components/ad';
+@import './components/calculator';
+@import './components/search';
+@import './components/message';
 
 $background-color: #7dad73;
 $app-background-color: #79c9fa;

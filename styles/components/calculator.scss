@@ -1,0 +1,18 @@
+.calculator {
+  @include bp('med') {
+    background-position: -108px center;
+    background-size: 270px;
+    padding-top: 20px;
+  }
+
+  background: url('../static/pikachu.png') no-repeat -84px center;
+  background-size: 208px;
+  box-sizing: border-box;
+  padding: 10px;
+
+  &__form {
+    margin: 0 auto;
+    max-width: 850px;
+    min-height: 190px;
+  }
+}
