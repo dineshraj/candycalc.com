@@ -5,6 +5,8 @@ import React from 'react';
 import Calculator from '../../components/Calculator';
 import Search from '../../components/Search';
 import Message from '../../components/Message';
+import EntryBox from '../../components/EntryBox';
+import TickBox from '../../components/TickBox';
 
 const data = {
   groups: 'testGroup',
@@ -45,6 +47,16 @@ describe('<Calculator />', () => {
   it('renders the message component', () => {
     const calculator = shallow(<Calculator groups={data.groups} pokemon={data.pokemon} />);
     assert.equal(calculator.find(Message).length, 1);
+  });
+
+  it('renders two entrybox components', () => {
+    const calculator = shallow(<Calculator groups={data.groups} pokemon={data.pokemon} />);
+    assert.equal(calculator.find(EntryBox).length, 2);
+  });
+
+  it.skip('renders two tickbox components', () => {
+    const calculator = shallow(<Calculator groups={data.groups} pokemon={data.pokemon} />);
+    assert.equal(calculator.find(TickBox).length, 2);
   });
 
 });

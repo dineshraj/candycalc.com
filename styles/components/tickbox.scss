@@ -1,0 +1,17 @@
+.tick-box {
+  margin-bottom: 20px;
+  max-width: 830px;
+
+  &__input {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    left: -9999em;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+    z-index: -1000;
+  }
+}

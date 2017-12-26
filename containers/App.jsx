@@ -5,7 +5,7 @@ import Ad from '../components/Ad';
 import Calculator from '../components/Calculator';
 import data from '../static/data.json';
 
-const App = (props) => {
+const App = () => {
   /*
   App
     |
@@ -13,12 +13,8 @@ const App = (props) => {
       |
       -- Form
          |
-         -- Input (selectize plugin)
-         -- Message
          -- Options
          |
-         -- Entry Box
-         -- Entry Box
          -- Tick Box
          -- Tick Box
          -- Message
