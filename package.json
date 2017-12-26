@@ -5,10 +5,11 @@
   "main": "index.jsx",
   "scripts": {
     "test": "mocha --require tests/setup.js --require ignore-styles --recursive './tests/**/*.{js,jsx}'",
-    "build": "webpack",
+    "build": "npm t && webpack",
     "start": "nodemon ./server.js --exec babel-node",
     "build:dev": "NODE_ENV=dev webpack --display-error-details",
-    "clean": "rm -rf ./dist"
+    "clean": "rm -rf ./build",
+    "lint": "./node_modules/.bin/eslint . --ext=js,jsx"
   },
   "keywords": [],
   "author": "",
@@ -25,6 +26,7 @@
     "enzyme": "^3.2.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "eslint": "^4.14.0",
+    "eslint-plugin-react": "^7.5.1",
     "express": "^4.16.2",
     "extract-text-webpack-plugin": "^3.0.2",
     "ignore-styles": "^5.0.1",
@@ -37,7 +39,7 @@
     "react-dom": "^16.2.0",
     "react-dom-factories": "^1.0.2",
     "react-test-renderer": "^16.2.0",
-    "react-transition-group": "1.1.2",
+    "react-transition-group": "^1.1.2",
     "sass-loader": "^6.0.6",
     "sinon": "^4.1.3",
     "style-loader": "^0.19.1",
