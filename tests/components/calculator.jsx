@@ -44,9 +44,9 @@ describe('<Calculator />', () => {
     assert.deepEqual(calculator.find(Search).prop('pokemon'), expectedOptions);
   });
 
-  it('renders the message component', () => {
+  it('renders three message components', () => {
     const calculator = shallow(<Calculator groups={data.groups} pokemon={data.pokemon} />);
-    assert.equal(calculator.find(Message).length, 1);
+    assert.equal(calculator.find(Message).length, 3);
   });
 
   it('renders two entrybox components', () => {
@@ -57,6 +57,11 @@ describe('<Calculator />', () => {
   it.skip('renders two tickbox components', () => {
     const calculator = shallow(<Calculator groups={data.groups} pokemon={data.pokemon} />);
     assert.equal(calculator.find(TickBox).length, 2);
+  });
+
+  it.skip('renders the reset input button', () => {
+    const calculator = shallow(<Calculator groups={data.groups} pokemon={data.pokemon} />);
+    assert.equal(calculator.find('calculator__reset').length, 1);
   });
 
 });

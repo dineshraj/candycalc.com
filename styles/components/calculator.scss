@@ -1,3 +1,7 @@
+$reset-background: #ffcb05;
+$reset-border: #385ea9;
+$reset-color: #385ea9;
+
 .calculator {
   @include bp('med') {
     background-position: -108px center;
@@ -15,5 +19,20 @@
     max-width: 850px;
     min-height: 190px;
     text-align: center;
+  }
+
+  &__reset {
+    -webkit-appearance: none;
+    background: $reset-background;
+    border: 3px solid $reset-border;
+    color: $reset-color;
+    font-family: 'Architects Daughter', cursive;
+    font-size: 34px;
+    font-weight: bold;
+    margin: 10px 0;
+    max-width: 830px;
+    padding: 0;
+    text-transform: uppercase;
+    width: 100%;
   }
 }

@@ -13,7 +13,7 @@ class TickBox extends React.Component {
   _toggleCheckedValue() {
     this.setState({
       checked: !this.state.checked
-    });
+    }, () => this.props.clickCallback(this.state.checked));
   }
 
   render() {

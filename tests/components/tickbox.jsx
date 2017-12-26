@@ -1,5 +1,6 @@
 import assert from 'assert';
 import { shallow } from 'enzyme';
+import sinon from 'sinon';
 
 import React from 'react';
 import TickBox from '../../components/TickBox';
@@ -27,7 +28,8 @@ describe('<TickBox />', () => {
   });
 
   it('updates state when checked is true', () => {
-    const tickBox = shallow(<TickBox />);
+    const onClickStub = sinon.stub();
+    const tickBox = shallow(<TickBox clickCallback={onClickStub} />);
     tickBox.find('input').simulate('click');
     assert.equal(tickBox.state('checked'), true);
   });
@@ -45,5 +47,14 @@ describe('<TickBox />', () => {
     tickBox.setState({ checked: true });
     assert.equal(tickBox.find('.tick-box__input').prop('checked'), 'checked');
   });
+
+  it('calls onClick callback when clicked', () => {
+    const onClickStub = sinon.stub();
+    const tickBox = shallow(<TickBox clickCallback={onClickStub} />);
+
+    tickBox.find('input').simulate('click');
+    sinon.assert.calledOnce(onClickStub);
+  });
+
 
 });

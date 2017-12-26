@@ -1,7 +1,9 @@
 import React from 'react';
 
-export default ({ message }) => {
+export default ({ message, overrideClass = '' }) => {
+  const messageClass = `message ${overrideClass}`;
+
   return (
-    <p className="message">{message}</p>
+    <p className={messageClass}>{message}</p>
   );
 };
