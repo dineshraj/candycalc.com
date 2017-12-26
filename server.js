@@ -20,7 +20,6 @@ function handleRender(req, res) {
   });
 }
 
-app.use(express.static(path.join(__dirname, 'build')))
-app.use(express.static(path.join(__dirname, 'static')))
+app.use(express.static(path.join(__dirname, 'build')));
 app.use('/', handleRender);
 app.listen(port);
