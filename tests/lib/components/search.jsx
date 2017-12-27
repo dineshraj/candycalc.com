@@ -2,7 +2,7 @@ import assert from 'assert';
 import { shallow } from 'enzyme';
 
 import React from 'react';
-import Search from '../../components/Search';
+import Search from '../../../lib/components/Search';
 import { SimpleSelect } from 'react-selectize';
 
 const pokemonData = [

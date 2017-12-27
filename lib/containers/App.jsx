@@ -3,7 +3,7 @@ import React from 'react';
 import Header from '../components/Header';
 import Ad from '../components/Ad';
 import Calculator from '../components/Calculator';
-import data from '../static/data.json';
+import data from '../../static/data.json';
 
 const App = () => {
   /*

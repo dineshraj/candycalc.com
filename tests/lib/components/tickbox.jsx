@@ -3,8 +3,8 @@ import { shallow } from 'enzyme';
 import sinon from 'sinon';
 
 import React from 'react';
-import TickBox from '../../components/TickBox';
-import Label from '../../components/Label';
+import TickBox from '../../../lib/components/TickBox';
+import Label from '../../../lib/components/Label';
 
 describe('<TickBox />', () => {
 
@@ -34,10 +34,20 @@ describe('<TickBox />', () => {
     assert.equal(tickBox.state('checked'), true);
   });
 
-  it('sends checked class to Label when checked is true', () => {
+  it('sends checked class to Label when checked state is true', () => {
     const tickBox = shallow(<TickBox />);
     assert.equal(tickBox.find(Label).prop('additionalClass'), '');
     tickBox.setState({ checked: true });
+    assert.equal(tickBox.find(Label).prop('additionalClass'), ' checked');
+  });
+
+  it('does not checked class to Label when checked prop is false', () => {
+    const tickBox = shallow(<TickBox checked={false} />);
+    assert.equal(tickBox.find(Label).prop('additionalClass'), '');
+  });
+
+  it('sends checked class to Label when checked prop is true', () => {
+    const tickBox = shallow(<TickBox checked={true} />);
     assert.equal(tickBox.find(Label).prop('additionalClass'), ' checked');
   });
 
@@ -55,6 +65,5 @@ describe('<TickBox />', () => {
     tickBox.find('input').simulate('click');
     sinon.assert.calledOnce(onClickStub);
   });
-
 
 });

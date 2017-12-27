@@ -2,11 +2,11 @@ import assert from 'assert';
 import { shallow } from 'enzyme';
 
 import React from 'react';
-import Calculator from '../../components/Calculator';
-import Search from '../../components/Search';
-import Message from '../../components/Message';
-import EntryBox from '../../components/EntryBox';
-import TickBox from '../../components/TickBox';
+import Calculator from '../../../lib/components/Calculator';
+import Search from '../../../lib/components/Search';
+import Message from '../../../lib/components/Message';
+import EntryBox from '../../../lib/components/EntryBox';
+import TickBox from '../../../lib/components/TickBox';
 
 const data = {
   groups: 'testGroup',
@@ -44,6 +44,20 @@ describe('<Calculator />', () => {
     assert.deepEqual(calculator.find(Search).prop('pokemon'), expectedOptions);
   });
 
+  it('it sets initial state', () => {
+    const calculator = shallow(<Calculator groups={data.groups} pokemon={data.pokemon} />);
+    const expectedInitalState = {
+      pokemon: 'Pidgey',
+      candyCost: 12,
+      pokemonNum: null,
+
+      luckyEgg: false,
+      transfer: false,
+      error: false
+    }
+    assert.deepEqual(calculator.state(), expectedInitalState);
+  });
+
   it('renders three message components', () => {
     const calculator = shallow(<Calculator groups={data.groups} pokemon={data.pokemon} />);
     assert.equal(calculator.find(Message).length, 3);
@@ -63,5 +77,4 @@ describe('<Calculator />', () => {
     const calculator = shallow(<Calculator groups={data.groups} pokemon={data.pokemon} />);
     assert.equal(calculator.find('calculator__reset').length, 1);
   });
-
 });

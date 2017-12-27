@@ -2,10 +2,10 @@ import assert from 'assert';
 import { shallow } from 'enzyme';
 
 import React from 'react';
-import App from '../../containers/App';
-import Header from '../../components/Header';
-import Ad from '../../components/Ad';
-import Calculator from '../../components/Calculator';
+import App from '../../../lib/containers/App';
+import Header from '../../../lib/components/Header';
+import Ad from '../../../lib/components/Ad';
+import Calculator from '../../../lib/components/Calculator';
 
 describe('<App />', () => {
 

@@ -2,7 +2,7 @@ import assert from 'assert';
 import { shallow } from 'enzyme';
 
 import React from 'react';
-import Header from '../../components/Header';
+import Header from '../../../lib/components/Header';
 
 describe('<Header />', () => {
 

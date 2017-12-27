@@ -3,7 +3,7 @@ const fs = require('fs');
 const express = require('express');
 const React = require('react');
 const renderToString = require('react-dom/server').renderToString;
-const App = require('./containers/App');
+const App = require('./lib/containers/App');
 
 const port = 3000;
 const app = express();

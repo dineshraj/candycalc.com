@@ -6,7 +6,7 @@ class TickBox extends React.Component {
     super(props);
 
     this.state = {
-      checked: false
+      checked: this.props.checked,
     };
   }
 
@@ -16,9 +16,14 @@ class TickBox extends React.Component {
     }, () => this.props.clickCallback(this.state.checked));
   }
 
+  _isChecked() {
+
+    return this.state.checked ? ' checked' : '';
+  }
+
   render() {
-    const labelClass = this.state.checked ? ' checked' : '';
-    const isChecked = this.state.checked ? 'checked' : '';
+    const labelClass = this._isChecked();
+    const isChecked = this._isChecked();
     const id = this.props.id;
 
     return (
