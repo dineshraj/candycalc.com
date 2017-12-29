@@ -8,7 +8,7 @@ import './styles/index.scss';
 
 const store = configureStore();
 
-ReactDOM.render(
+ReactDOM.hydrate(
   <Provider store={store}>
     <AppMain.App />
   </Provider>,
