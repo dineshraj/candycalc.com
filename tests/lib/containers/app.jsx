@@ -7,18 +7,6 @@ import Header from '../../../lib/components/Header';
 import Ad from '../../../lib/components/Ad';
 import Calculator from '../../../lib/containers/Calculator';
 
-const fakeState = {
-  pokemonName: 'Pidgey',
-  candyCost: 12,
-  pokemonAmount: null,
-  candyAmount: null,
-  luckyEgg: false,
-  transfer: false,
-  error: false,
-  pokemon: [ ['pidgey', '12'] ],
-  groups: 'test'
-};
-
 describe('<App />', () => {
 
   it('renders the Header', () => {
