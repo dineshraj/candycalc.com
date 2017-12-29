@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import Header from '../components/Header';
 import Ad from '../components/Ad';
-import Calculator from '../components/Calculator';
+import Calculator from '../containers/Calculator';
 
 export function App() {
   console.log('but I am rendering App');

@@ -1,8 +1,8 @@
 import React from 'react';
-import Search from './Search';
-import Message from './Message';
-import EntryBox from './EntryBox';
-import TickBox from './Tickbox';
+import Search from '../components/Search';
+import Message from '../components/Message';
+import EntryBox from '../components/EntryBox';
+import TickBox from '../components/Tickbox';
 
 function _processPokemon(pokemon) {
   return pokemon.map((item) => {

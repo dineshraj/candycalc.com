@@ -2,7 +2,7 @@ import assert from 'assert';
 import { shallow } from 'enzyme';
 
 import React from 'react';
-import Calculator from '../../../lib/components/Calculator';
+import Calculator from '../../../lib/containers/Calculator';
 import Search from '../../../lib/components/Search';
 import Message from '../../../lib/components/Message';
 import EntryBox from '../../../lib/components/EntryBox';

@@ -5,7 +5,7 @@ import { shallow } from 'enzyme';
 import * as AppMain from '../../../lib/containers/App';
 import Header from '../../../lib/components/Header';
 import Ad from '../../../lib/components/Ad';
-import Calculator from '../../../lib/components/Calculator';
+import Calculator from '../../../lib/containers/Calculator';
 
 const fakeState = {
   pokemonName: 'Pidgey',
