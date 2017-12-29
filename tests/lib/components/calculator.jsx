@@ -8,73 +8,72 @@ import Message from '../../../lib/components/Message';
 import EntryBox from '../../../lib/components/EntryBox';
 import TickBox from '../../../lib/components/TickBox';
 
-const data = {
-  groups: 'testGroup',
-  pokemon: [ ['testPokemon', 'testGroup'] ]
+const store = {
+  pokemonName: 'Pidgey',
+  candyCost: 12,
+  pokemonAmount: null,
+  candyAmount: null,
+  luckyEgg: false,
+  transfer: false,
+  error: false,
+  pokemon: [
+    ['Pidgey', '12']
+  ],
+  groups: [
+    {
+      'groupId': '12',
+      'title': '12 Candies'
+    }
+  ]
 };
 
 describe('<Calculator />', () => {
 
   it('renders the Calculator correctly', () => {
-    const calculator = shallow(<Calculator groups={data.groups} pokemon={data.pokemon} />);
+    const calculator = shallow(<Calculator {...store} />);
     assert.equal(calculator.prop('className'), 'calculator');
   });
 
   it('renders the calculator element correctly', () => {
-    const calculator = shallow(<Calculator groups={data.groups} pokemon={data.pokemon} />);
+    const calculator = shallow(<Calculator {...store} />);
     const formElement = calculator.find('form');
-    assert.equal(typeof formElement.prop('onSubmit'), 'function');
   });
 
   it('renders the search component', () => {
-    const calculator = shallow(<Calculator groups={data.groups} pokemon={data.pokemon} />);
+    const calculator = shallow(<Calculator {...store} />);
     assert.equal(calculator.find(Search).length, 1);
   });
 
   it('passes the processed app data into the search component', () => {
     const expectedOptions = [{
-      groupId: 'testGroup',
-      label: 'testPokemon',
-      value: 'testGroup'
+      groupId: '12',
+      label: 'Pidgey',
+      value: '12'
     }];
 
-    const calculator = shallow(<Calculator groups={data.groups} pokemon={data.pokemon} />);
+    const calculator = shallow(<Calculator {...store} />);
 
-    assert.deepEqual(calculator.find(Search).prop('groups'), data.groups);
+    assert.deepEqual(calculator.find(Search).prop('groups'), store.groups);
     assert.deepEqual(calculator.find(Search).prop('pokemon'), expectedOptions);
   });
 
-  it('it sets initial state', () => {
-    const calculator = shallow(<Calculator groups={data.groups} pokemon={data.pokemon} />);
-    const expectedInitalState = {
-      pokemon: 'Pidgey',
-      candyCost: 12,
-      pokemonNum: null,
-
-      luckyEgg: false,
-      transfer: false,
-      error: false
-    }
-    assert.deepEqual(calculator.state(), expectedInitalState);
-  });
-
   it('renders three message components', () => {
-    const calculator = shallow(<Calculator groups={data.groups} pokemon={data.pokemon} />);
+    const calculator = shallow(<Calculator {...store} />);
     assert.equal(calculator.find(Message).length, 3);
   });
 
   it('renders two entrybox components', () => {
-    const calculator = shallow(<Calculator groups={data.groups} pokemon={data.pokemon} />);
+    const calculator = shallow(<Calculator {...store} />);
     assert.equal(calculator.find(EntryBox).length, 2);
   });
 
   it.skip('renders two tickbox components', () => {
-    const calculator = shallow(<Calculator groups={data.groups} pokemon={data.pokemon} />);
+    const calculator = shallow(<Calculator {...store} />);
     assert.equal(calculator.find(TickBox).length, 2);
   });
 
   it.skip('renders the reset input button', () => {
-    const calculator = shallow(<Calculator groups={data.groups} pokemon={data.pokemon} />);
+    const calculator = shallow(<Calculator {...store} />);
     assert.equal(calculator.find('calculator__reset').length, 1);
   });
 });

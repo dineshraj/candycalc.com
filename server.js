@@ -1,15 +1,23 @@
-const path = require('path');
-const fs = require('fs');
-const express = require('express');
-const React = require('react');
-const renderToString = require('react-dom/server').renderToString;
-const App = require('./lib/containers/App');
+import path from 'path';
+import fs from 'fs';
+import express from 'express';
+
+import React from 'react';
+import { renderToString } from 'react-dom/server';
+import { Provider } from 'react-redux';
+import configureStore from './lib/store/configureStore';
+import * as AppMain from './lib/containers/App';
 
 const port = 3000;
 const app = express();
+const store = configureStore();
 
 function handleRender(req, res) {
-  const html = renderToString( <App /> );
+  const html = renderToString(
+    <Provider store={store}>
+      <AppMain.App />
+    </Provider>
+  );
 
   fs.readFile('views/index.html', 'utf8', (err, data) => {
     const document = data.replace(

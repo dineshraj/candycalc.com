@@ -55,7 +55,7 @@ describe('<TickBox />', () => {
     const tickBox = shallow(<TickBox />);
     assert.equal(tickBox.find('.tick-box__input').prop('checked'), '');
     tickBox.setState({ checked: true });
-    assert.equal(tickBox.find('.tick-box__input').prop('checked'), 'checked');
+    assert.equal(tickBox.find('.tick-box__input').prop('checked'), ' checked');
   });
 
   it('calls onClick callback when clicked', () => {

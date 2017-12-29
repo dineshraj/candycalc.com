@@ -10,7 +10,7 @@ import {
   setError
 } from '../../../../lib/store/actions/';
 
-describe.only('reducer', () => {
+describe('reducer', () => {
   it('returns the default state', () => {
     const expectedNewState = {
       pokemonName: 'Pidgey',
