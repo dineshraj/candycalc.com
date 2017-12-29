@@ -14,3 +14,16 @@ ReactDOM.hydrate(
   </Provider>,
   document.getElementById('candy-calc')
 );
+
+
+store.subscribe(() => {
+  const newStore = store.getState();
+  console.log(
+    newStore.pokemonName,
+    newStore.candyCost,
+    newStore.pokemonAmount,
+    newStore.candyAmount,
+    newStore.luckyEgg,
+    newStore.transfer
+  );
+});
