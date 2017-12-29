@@ -33,7 +33,7 @@ describe('<App />', () => {
   it('returns the state from mapStateToProps', () => {
     const fakeState = {
       state: 'state'
-    }
+    };
     const returnedProps = AppMain.mapStateToProps(fakeState);
     assert.equal(returnedProps, fakeState);
   });

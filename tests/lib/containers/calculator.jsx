@@ -36,7 +36,7 @@ describe('<Calculator />', () => {
 
   it('renders the calculator element correctly', () => {
     const calculator = shallow(<Calculator {...store} />);
-    const formElement = calculator.find('form');
+    assert.equal(calculator.find('form').length, 1);
   });
 
   it('renders the search component', () => {

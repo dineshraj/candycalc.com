@@ -1,12 +1,10 @@
 import React from 'react';
-import { connect } from 'react-redux';
 
 import Header from '../components/Header';
 import Ad from '../components/Ad';
 import Calculator from '../containers/Calculator';
 
 export function App() {
-  console.log('but I am rendering App');
   return (
     <div>
       <Header />
@@ -16,10 +14,3 @@ export function App() {
     </div>
   );
 }
-
-export function mapStateToProps(state) {
-  console.log('mapStateToProps in App', state);
-  return state;
-}
-
-export default connect(mapStateToProps)(Calculator);
