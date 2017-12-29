@@ -1,5 +1,6 @@
 import assert from 'assert';
 import { shallow } from 'enzyme';
+import sinon from 'sinon';
 
 import React from 'react';
 import Calculator from '../../../lib/containers/Calculator';
@@ -7,6 +8,8 @@ import Search from '../../../lib/components/Search';
 import Message from '../../../lib/components/Message';
 import EntryBox from '../../../lib/components/EntryBox';
 import TickBox from '../../../lib/components/TickBox';
+
+import * as actions from '../../../lib/store/actions';
 
 const store = {
   subscribe: function () {},
@@ -63,9 +66,14 @@ describe('<Calculator />', () => {
     assert.deepEqual(calculator.find(Search).prop('pokemon'), expectedOptions);
   });
 
-  it('renders three message components', () => {
+  it('passes in a chance callback into the search component', () => {
     const calculator = shallow(<Calculator store={store} />).dive();
-    assert.equal(calculator.find(Message).length, 3);
+    assert.equal(typeof calculator.find(Search).prop('onChange'), 'function');
+  });
+
+  it('renders two message components', () => {
+    const calculator = shallow(<Calculator store={store} />).dive();
+    assert.equal(calculator.find(Message).length, 2);
   });
 
   it('renders two entrybox components', () => {
@@ -78,8 +86,25 @@ describe('<Calculator />', () => {
     assert.equal(calculator.find(TickBox).length, 2);
   });
 
-  it.skip('renders the reset input button', () => {
+  it('renders the reset input button', () => {
     const calculator = shallow(<Calculator store={store} />).dive();
-    assert.equal(calculator.find('calculator__reset').length, 1);
+    assert.equal(calculator.find('.calculator__reset').length, 1);
+  });
+
+  it('calls the setPokemonName and setCandyCost action when the search input is changed');
+
+  it('calls the setPokemonAmount action when the input is changed');
+
+  it('calls the setCandyAmount action when the input is changed');
+
+  it('calls the setLuckyEgg action when the checkbox is clicked');
+
+  it('calls the setTransder action when the checkbox is clicked');
+
+  it('calls the reset action when the reset button is clicked', () => {
+    const resetSpy = sinon.spy(actions, 'reset');
+    const calculator = shallow(<Calculator store={store} />).dive();
+    calculator.find('.calculator__reset').simulate('click');
+    sinon.assert.calledOnce(resetSpy);
   });
 });
