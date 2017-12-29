@@ -31,7 +31,7 @@ describe('<EntryBox />', () => {
   it('assigns onChange callback', () => {
     const onChangeStub = sinon.stub();
     const entryBox = shallow(<EntryBox changeCallback={onChangeStub} />);
-    assert.equal(entryBox.find('.entry-box__input').prop('onChange'), onChangeStub);
+    assert.equal(typeof entryBox.find('.entry-box__input').prop('onChange'), 'function');
   });
 
 });
