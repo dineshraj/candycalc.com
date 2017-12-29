@@ -27,35 +27,24 @@ describe('<TickBox />', () => {
     assert.equal(tickBox.find('.tick-box__input').prop('value'), 'some-id');
   });
 
-  it('updates state when checked is true', () => {
-    const onClickStub = sinon.stub();
-    const tickBox = shallow(<TickBox clickCallback={onClickStub} />);
-    tickBox.find('input').simulate('click');
-    assert.equal(tickBox.state('checked'), true);
-  });
-
-  it('sends checked class to Label when checked state is true', () => {
-    const tickBox = shallow(<TickBox />);
-    assert.equal(tickBox.find(Label).prop('additionalClass'), '');
-    tickBox.setState({ checked: true });
-    assert.equal(tickBox.find(Label).prop('additionalClass'), ' checked');
+  it('sends checked class to Label when checked prop is true', () => {
+    const tickBox = shallow(<TickBox isChecked={true} />);
+    assert.equal(tickBox.find(Label).prop('additionalClass'), 'checked');
   });
 
   it('does not checked class to Label when checked prop is false', () => {
-    const tickBox = shallow(<TickBox checked={false} />);
+    const tickBox = shallow(<TickBox isChecked={false} />);
     assert.equal(tickBox.find(Label).prop('additionalClass'), '');
   });
 
-  it('sends checked class to Label when checked prop is true', () => {
-    const tickBox = shallow(<TickBox checked={true} />);
-    assert.equal(tickBox.find(Label).prop('additionalClass'), ' checked');
+  it('sets defaultChecked attribute to input when checked prop is true', () => {
+    const tickBox = shallow(<TickBox isChecked={true} />);
+    assert.equal(tickBox.find('.tick-box__input').prop('defaultChecked'), true);
   });
 
-  it('adds checked attribute to input when checked', () => {
-    const tickBox = shallow(<TickBox />);
-    assert.equal(tickBox.find('.tick-box__input').prop('checked'), '');
-    tickBox.setState({ checked: true });
-    assert.equal(tickBox.find('.tick-box__input').prop('checked'), ' checked');
+  it('sets defaultChecked attribute to input when checked prop is false', () => {
+    const tickBox = shallow(<TickBox isChecked={false} />);
+    assert.equal(tickBox.find('.tick-box__input').prop('defaultChecked'), false);
   });
 
   it('calls onClick callback when clicked', () => {
