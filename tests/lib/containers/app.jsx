@@ -21,23 +21,6 @@ const fakeState = {
 
 describe('<App />', () => {
 
-  it('returns the state from mapStateToProps', () => {
-    const returnedProps = AppMain.mapStateToProps(fakeState);
-    assert.deepEqual(returnedProps, fakeState);
-  });
-
-  it('exports a connected component', () => {
-    assert.equal(typeof AppMain.default.WrappedComponent, 'function');
-  });
-
-  it('returns the state from mapStateToProps', () => {
-    const fakeState = {
-      state: 'state'
-    };
-    const returnedProps = AppMain.mapStateToProps(fakeState);
-    assert.equal(returnedProps, fakeState);
-  });
-
   it('renders the Header', () => {
     const App = shallow(<AppMain.App />);
     assert.equal(App.find(Header).length, 1);
