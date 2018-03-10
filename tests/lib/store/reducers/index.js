@@ -82,4 +82,5 @@ describe('reducer', () => {
     const newState = reducer({ existing: 'state' }, resetActionData);
     assert.deepEqual(newState, { existing: 'state'} );
   });
+
 });
