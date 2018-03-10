@@ -35,8 +35,20 @@ class Calculator extends React.Component {
     this.props.candyCostDispatch(candyCost);
   }
 
+
+  _renderMessage() {
+    return 'test'
+  }
+
   render() {
     const pokemonArray = this._processPokemon(this.props.pokemon);
+    let message;
+
+    if (this.props.pokemonAmount || this.props.candyAmount) {
+      message = this._renderMessage();
+    } else {
+      message = 'Enter a Pokémon, the number of Pokémon you have and/or the number of Candy you have.';
+    }
 
     return (
       <div className="calculator">
@@ -46,7 +58,7 @@ class Calculator extends React.Component {
           <EntryBox id="candy" label="How many of these candy?" changeCallback={this.props.candyAmountDispatch} />
           <TickBox id="luckyEgg" label="Using a Lucky Egg?" isChecked={this.props.luckyEgg} clickCallback={this.props.luckyEggDispatch} />
           <TickBox id="transfer" label="Transfer evolution?" isChecked={this.props.transfer} clickCallback={this.props.transferDispatch} />
-          <Message message="Enter a Pokémon, the number of Pokémon you have and/or the number of Candy you have." overrideClass="message--info" />
+          <Message message={message} overrideClass="message--info" />
           <Message message="You can evolve roughly 60 Pokémon in the 30 minutes a Lucky Egg is active for. So try and get as many candy as you can!" overrideClass="message--hint" />
           <input type="reset" className="calculator__reset" value="Start Again" onClick={this.props.resetDispatch} />
         </form>
