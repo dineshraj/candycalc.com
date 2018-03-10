@@ -29,7 +29,7 @@ module.exports = {
     path: path.resolve(__dirname, './build'),
     filename: 'index.js'
   },
-  devtool: isProduction ? false : 'cheap-eval-source-map',
+  devtool: isProduction ? false : 'cheap-module-source-map',
   module: {
     loaders: [
       {
