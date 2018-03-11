@@ -36,50 +36,33 @@ class Calculator extends React.Component {
     this.props.candyCostDispatch(candyCost);
   }
 
+  _cantEvolve() {
+    const { pokemonAmount, candyAmount, candyCost } = this.props;
+    return ( pokemonAmount * candyCost ) > candyAmount;
+  }
+
+  _canEvolveThemAll() {
+    const { pokemonAmount, candyAmount, candyCost } = this.props;
+    return ( pokemonAmount * candyCost ) < candyAmount;
+  }
+
+  _candyLeftOver() {
+    const { pokemonAmount, candyAmount, candyCost } = this.props;
+    return candyAmount - ( pokemonAmount * candyCost );
+  }
 
   _renderMessage() {
-    const results = this.props.results;
-    const pokemonName = this.props.pokemonName
-    const pokemonAmount = this.props.pokemonAmount
-    const candyAmount = this.props.candyAmount
+    const { pokemonAmount, candyAmount, pokemonName, candyCost } = this.props;
 
-    console.log(results);
-
-    if (pokemonAmount === 0 || pokemonAmount === null) {
+    if (!pokemonAmount && !candyAmount) {
+      return this.props.message;
+    } else if (pokemonAmount === 0) {
       return `You must have at least one ${pokemonName} if you want to evolve some!`
-    } else if (!results.canEvolve) {
-      return `You don't have enough Candy to evolve any of your ${pokemonName}, you need at least ${candyAmount}. Catch some more to get more Candy!`;
-    } else {
-      return 'bye';
-    }
-  }
-
-  _shouldCalculateResults(currentProps, nextProps) {
-    const props = ['pokemonName', 'candyCost', 'pokemonAmount', 'candyAmount', 'luckyEgg', 'transfer'];
-
-    return props.some((prop) => {
-      return currentProps[prop] !== nextProps[prop];
-    })
-  }
-
-  componentWillUpdate(nextProps) {
-    console.log('componentWillUpdate');
-    const currentProps = this.props;
-
-    console.log('should have specific message?', this._shouldCalculateResults(currentProps, nextProps));
-
-    if (this._shouldCalculateResults(currentProps, nextProps)) {
-      const canEvolve = (nextProps.pokemonAmount * nextProps.candyCost) <= nextProps.candyAmount;
-      // const numberCanEvolve = Math.floor(nextProps.candyAmount / nextProps.candyCost);
-      // const candyLeft = nextProps.candyAmount % nextProps.candyCost;
-
-      const results = {
-        canEvolve
-        // numberCanEvolve,
-        // candyLeft
-      };
-
-      this.props.resultsDispatch(results);
+    } else if (this._cantEvolve()) {
+      return `You don't have enough Candy to evolve any of your ${pokemonName}, you need at least ${candyCost}. Catch some more to get more Candy!`;
+    } else if (this._canEvolveThemAll()) {
+      const candyLeftOver = this._candyLeftOver();
+      return `You can evolve all your ${pokemonName} using your ${candyAmount} Candy. You\'ll have ${candyLeftOver} Candy left over, better go catch some more!`
     }
   }
 
@@ -87,8 +70,6 @@ class Calculator extends React.Component {
     const {
       pokemon,
       groups,
-      pokemonAmount,
-      candyAmount,
       luckyEgg,
       transfer,
       pokemonAmountDispatch,
@@ -98,22 +79,13 @@ class Calculator extends React.Component {
       resetDispatch
     } = this.props;
     const pokemonArray = this._processPokemon(pokemon);
-
-    let message;
-
-    if (pokemonAmount || candyAmount) {
-      message = this._renderMessage(luckyEgg, transfer);
-    } else {
-      message = 'Enter a Pokémon, the number of Pokémon you have and/or the number of Candy you have.';
-    }
-
-    console.log(message);
+    const message = this._renderMessage();
 
     return (
       <div className="calculator">
         <form className="calculator__form">
           <Search label="Choose a Pok&eacute;mon" groups={groups} pokemon={pokemonArray} onChange={(e) => this._updatePokemonState(e)}/>
-          <EntryBox id="pokemon" label="How many of these Pok&eacute;mon?" changeCallback={pokemonAmountDispatch} />
+          <EntryBox id="pokemon" label="How many of these Pok&eacute;mon?" changeCallback={pokemonAmountDispatch}/>
           <EntryBox id="candy" label="How many of these candy?" changeCallback={candyAmountDispatch} />
           <TickBox id="luckyEgg" label="Using a Lucky Egg?" isChecked={luckyEgg} clickCallback={luckyEggDispatch} />
           <TickBox id="transfer" label="Transfer evolution?" isChecked={transfer} clickCallback={transferDispatch} />
@@ -140,7 +112,6 @@ function mapDispatchToProps(dispatch) {
     candyAmountDispatch: (payload) => dispatch(setCandyAmount(payload)),
     luckyEggDispatch: (payload) => dispatch(setLuckyEgg(payload)),
     transferDispatch: (payload) => dispatch(setTransfer(payload)),
-    resultsDispatch: (payload) => dispatch(setResults(payload)),
     resetDispatch: () => dispatch(reset())
   };
 }
