@@ -7,6 +7,7 @@ import {
   setCandyAmount,
   setLuckyEgg,
   setTransfer,
+  setMessage,
   setError,
   reset
 } from '../../../../lib/store/actions/';
