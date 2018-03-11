@@ -117,10 +117,10 @@ class Calculator extends React.Component {
           <TickBox id="transfer" label="Transfer evolution?" isChecked={transfer} changeCallback={transferDispatch} />
           <Message message={message} overrideClass="message--info" />
           <Message message="You can evolve roughly 60 Pokémon in the 30 minutes a Lucky Egg is active for. So try and get as many candy as you can!" overrideClass="message--hint" />
-          <input type="reset" className="calculator__reset" value="Start Again" onClick={resetDispatch} />
         </form>
       </div>
     );
+    // <input type="button" className="calculator__reset" value="Start Again" onClick={resetDispatch} />
   }
 }
 
