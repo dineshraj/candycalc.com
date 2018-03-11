@@ -54,6 +54,7 @@
   },
   "dependencies": {
     "@babel/preset-env": "^7.0.0-beta.35",
-    "react-selectize": "^3.0.1"
+    "react-selectize": "^3.0.1",
+    "serve-favicon": "^2.4.5"
   }
 }
