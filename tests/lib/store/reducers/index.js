@@ -21,7 +21,7 @@ describe('reducer', () => {
       luckyEgg: false,
       transfer: false,
       error: false,
-      results: {}
+      message: {}
     };
     const newState = reducer(undefined, { type: '' });
     assert.deepEqual(newState, expectedNewState);
@@ -74,6 +74,13 @@ describe('reducer', () => {
     const newState = reducer({ existing: 'state' }, actionData);
     assert.equal(newState.existing, 'state');
     assert.equal(newState.error, 'some-error-value');
+  });
+
+  it('sets message value for setMessage action', () => {
+    const actionData = setMessage('some-message-value');
+    const newState = reducer({ existing: 'state' }, actionData);
+    assert.equal(newState.existing, 'state');
+    assert.equal(newState.message, 'some-message-value');
   });
 
   it('resets the state when reset action is called', () => {
