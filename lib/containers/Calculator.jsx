@@ -38,7 +38,9 @@ class Calculator extends React.Component {
 
   _cantEvolve() {
     const { pokemonAmount, candyAmount, candyCost } = this.props;
-    return ( pokemonAmount * candyCost ) > candyAmount;
+    const totalCost = pokemonAmount * candyCost
+
+    return (totalCost > candyAmount) && (candyAmount / candyCost) < 1;
   }
 
   _canEvolveThemAll() {
@@ -46,9 +48,20 @@ class Calculator extends React.Component {
     return ( pokemonAmount * candyCost ) < candyAmount;
   }
 
-  _candyLeftOver() {
+  _candyLeftOver(numberEvolved) {
     const { pokemonAmount, candyAmount, candyCost } = this.props;
-    return candyAmount - ( pokemonAmount * candyCost );
+    return candyAmount - ( numberEvolved * candyCost );
+  }
+
+  _xpEarned(numberToEvolve) {
+    const { luckyEgg } = this.props
+    const multiplier = luckyEgg ? 1000 : 500;
+    return `You'll earn ${multiplier * numberToEvolve} XP`;
+  }
+
+  _maximumCanEvolve() {
+    const { candyAmount, candyCost} = this.props;
+    return Math.floor(candyAmount / candyCost);
   }
 
   _renderMessage() {
@@ -61,8 +74,14 @@ class Calculator extends React.Component {
     } else if (this._cantEvolve()) {
       return `You don't have enough Candy to evolve any of your ${pokemonName}, you need at least ${candyCost}. Catch some more to get more Candy!`;
     } else if (this._canEvolveThemAll()) {
-      const candyLeftOver = this._candyLeftOver();
-      return `You can evolve all your ${pokemonName} using your ${candyAmount} Candy. You\'ll have ${candyLeftOver} Candy left over, better go catch some more!`
+      const candyLeftOver = this._candyLeftOver(pokemonAmount);
+      const xpEarnt = this._xpEarned(pokemonAmount);
+      return `You can evolve all your ${pokemonName} using your ${candyAmount} Candy. You\'ll have ${candyLeftOver} Candy left over, better go catch some more! ${xpEarnt}`
+    } else {
+      const maxCanEvolve = this._maximumCanEvolve();
+      const xpEarnt = this._xpEarned(pokemonAmount);
+      const candyLeftOver = this._candyLeftOver(maxCanEvolve);
+      return `You can evolve ${maxCanEvolve} of your ${pokemonAmount} ${pokemonName}. You\'ll have ${candyLeftOver} Candy left over, better go catch some more! ${xpEarnt}`;
     }
   }
 

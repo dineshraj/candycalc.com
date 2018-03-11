@@ -197,18 +197,42 @@ describe('<Calculator />', () => {
       assert.equal(message, expectedText);
     });
 
-    it.only('calculates if you can evolve all your pokemon and how much candy is left', () => {
+    it('calculates if you can evolve all your pokemon and how much candy is left', () => {
       const store = getMockStore({ pokemonAmount: 1, candyAmount: 28 });
       const calculator = shallow(<Calculator store={store} />);
       const message = calculator.dive().find(Message).get(0).props.message;
       const expectedText = 'You can evolve all your Pidgey using your 28 Candy. You\'ll have 16 Candy left over, better go catch some more!';
-      assert.equal(message, expectedText);
+      assert.include(message, expectedText);
     });
 
-    it('calculates how many candy you will have left over');
-    it('calculates how many candy you will have left over when also transferring');
-    it('calculates XP you will earn');
-    it('calculates XP you will earn with a lucky egg');
+    it.only('calculates maximum amount of pokemon you can evolve and how much candy is left', () => {
+      const store = getMockStore({ pokemonAmount: 3, candyAmount: 28 });
+      const calculator = shallow(<Calculator store={store} />);
+      const message = calculator.dive().find(Message).get(0).props.message;
+      const expectedText = 'You can evolve 2 of your 3 Pidgey. You\'ll have 4 Candy left over, better go catch some more!';
+      assert.include(message, expectedText);
+    });
+
+    it('calculates XP you will earn', () => {
+      const store = getMockStore({ pokemonAmount: 1, candyAmount: 28 });
+      const calculator = shallow(<Calculator store={store} />);
+      const message = calculator.dive().find(Message).get(0).props.message;
+      const expectedText = 'You\'ll earn 500 XP';
+      assert.include(message, expectedText);
+    });
+
+    it('calculates XP you will earn with a lucky egg', () => {
+      const store = getMockStore({ pokemonAmount: 1, candyAmount: 28, luckyEgg: true });
+      const calculator = shallow(<Calculator store={store} />);
+      const message = calculator.dive().find(Message).get(0).props.message;
+      const expectedText = 'You\'ll earn 1000 XP';
+      assert.include(message, expectedText);
+    });
+
+    it('calculates maximum amount of pokemone you can evolve when also tranferring');
+
+    it('calculates how much candy is left when also tranferring');
+
   });
 
 });
