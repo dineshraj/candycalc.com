@@ -43,19 +43,19 @@ class Calculator extends React.Component {
     return (totalCost > candyAmount) && (candyAmount / candyCost) < 1;
   }
 
-  _addTransferCandy() {
+  _addTransferCandy(numberEvolved) {
     const { transfer, pokemonAmount } = this.props;
-    return transfer ? pokemonAmount : 0;
+    return transfer ? numberEvolved : 0;
   }
 
   _canEvolveThemAll() {
     const { pokemonAmount, candyAmount, candyCost } = this.props;
-    return ( pokemonAmount * candyCost ) <= (candyAmount + this._addTransferCandy());
+    return ( pokemonAmount * candyCost ) <= (candyAmount + this._addTransferCandy(pokemonAmount));
   }
 
   _candyLeftOver(numberEvolved) {
     const { pokemonAmount, candyAmount, candyCost } = this.props;
-    const totalCandyAmount = candyAmount + numberEvolved + this._addTransferCandy();
+    const totalCandyAmount = candyAmount + numberEvolved + this._addTransferCandy(numberEvolved);
     return totalCandyAmount - ( numberEvolved * candyCost );
   }
 
