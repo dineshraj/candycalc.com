@@ -14,9 +14,3 @@ ReactDOM.hydrate(
   </Provider>,
   document.getElementById('candy-calc')
 );
-// 
-// store.subscribe(
-//   () => {
-//     AppMain.calculateResults(store.getState())
-//   }
-// );
