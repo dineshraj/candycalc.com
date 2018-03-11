@@ -151,7 +151,7 @@ describe('<Calculator />', () => {
 
   });
 
-  describe('client side logic', () => {
+  describe('app logic', () => {
     let node;
 
     beforeEach(() => {
@@ -201,15 +201,15 @@ describe('<Calculator />', () => {
       const store = getMockStore({ pokemonAmount: 1, candyAmount: 28 });
       const calculator = shallow(<Calculator store={store} />);
       const message = calculator.dive().find(Message).get(0).props.message;
-      const expectedText = 'You can evolve all your Pidgey using your 28 Candy. You\'ll have 16 Candy left over, better go catch some more!';
+      const expectedText = 'You can evolve all your Pidgey using your 28 Candy. You\'ll have 17 Candy left over, better go catch some more!';
       assert.include(message, expectedText);
     });
 
-    it.only('calculates maximum amount of pokemon you can evolve and how much candy is left', () => {
+    it('calculates maximum amount of pokemon you can evolve and how much candy is left', () => {
       const store = getMockStore({ pokemonAmount: 3, candyAmount: 28 });
       const calculator = shallow(<Calculator store={store} />);
       const message = calculator.dive().find(Message).get(0).props.message;
-      const expectedText = 'You can evolve 2 of your 3 Pidgey. You\'ll have 4 Candy left over, better go catch some more!';
+      const expectedText = 'You can evolve 2 of your 3 Pidgey. You\'ll have 6 Candy left over, better go catch some more!';
       assert.include(message, expectedText);
     });
 
@@ -229,9 +229,21 @@ describe('<Calculator />', () => {
       assert.include(message, expectedText);
     });
 
-    it('calculates maximum amount of pokemone you can evolve when also tranferring');
+    it('calculates maximum amount of pokemon you can evolve when also transfering', () => {
+      const store = getMockStore({ pokemonAmount: 2, candyAmount: 22, transfer: true });
+      const calculator = shallow(<Calculator store={store} />);
+      const message = calculator.dive().find(Message).get(0).props.message;
+      const expectedText = 'You can evolve all your Pidgey using your 22 Candy if you transfer your evolutions.';
+      assert.include(message, expectedText);
+    });
 
-    it('calculates how much candy is left when also tranferring');
+    it('calculates how much candy is left when also tranferring', () => {
+      const store = getMockStore({ pokemonAmount: 2, candyAmount: 22, transfer: true });
+      const calculator = shallow(<Calculator store={store} />);
+      const message = calculator.dive().find(Message).get(0).props.message;
+      const expectedText = 'You\'ll have 2 Candy left over';
+      assert.include(message, expectedText);
+    });
 
   });
 

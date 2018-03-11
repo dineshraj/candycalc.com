@@ -43,14 +43,20 @@ class Calculator extends React.Component {
     return (totalCost > candyAmount) && (candyAmount / candyCost) < 1;
   }
 
+  _addTransferCandy() {
+    const { transfer, pokemonAmount } = this.props;
+    return transfer ? pokemonAmount : 0;
+  }
+
   _canEvolveThemAll() {
     const { pokemonAmount, candyAmount, candyCost } = this.props;
-    return ( pokemonAmount * candyCost ) < candyAmount;
+    return ( pokemonAmount * candyCost ) <= (candyAmount + this._addTransferCandy());
   }
 
   _candyLeftOver(numberEvolved) {
     const { pokemonAmount, candyAmount, candyCost } = this.props;
-    return candyAmount - ( numberEvolved * candyCost );
+    const totalCandyAmount = candyAmount + numberEvolved + this._addTransferCandy();
+    return totalCandyAmount - ( numberEvolved * candyCost );
   }
 
   _xpEarned(numberToEvolve) {
@@ -65,7 +71,8 @@ class Calculator extends React.Component {
   }
 
   _renderMessage() {
-    const { pokemonAmount, candyAmount, pokemonName, candyCost } = this.props;
+    const { pokemonAmount, candyAmount, pokemonName, candyCost, transfer } = this.props;
+    const transferText = transfer ? ' if you transfer your evolutions': '';
 
     if (!pokemonAmount && !candyAmount) {
       return this.props.message;
@@ -76,12 +83,12 @@ class Calculator extends React.Component {
     } else if (this._canEvolveThemAll()) {
       const candyLeftOver = this._candyLeftOver(pokemonAmount);
       const xpEarnt = this._xpEarned(pokemonAmount);
-      return `You can evolve all your ${pokemonName} using your ${candyAmount} Candy. You\'ll have ${candyLeftOver} Candy left over, better go catch some more! ${xpEarnt}`
+      return `You can evolve all your ${pokemonName} using your ${candyAmount} Candy${transferText}. You\'ll have ${candyLeftOver} Candy left over, better go catch some more! ${xpEarnt}`
     } else {
       const maxCanEvolve = this._maximumCanEvolve();
-      const xpEarnt = this._xpEarned(pokemonAmount);
+      const xpEarnt = this._xpEarned(maxCanEvolve);
       const candyLeftOver = this._candyLeftOver(maxCanEvolve);
-      return `You can evolve ${maxCanEvolve} of your ${pokemonAmount} ${pokemonName}. You\'ll have ${candyLeftOver} Candy left over, better go catch some more! ${xpEarnt}`;
+      return `You can evolve ${maxCanEvolve} of your ${pokemonAmount} ${pokemonName}${transferText}. You\'ll have ${candyLeftOver} Candy left over, better go catch some more! ${xpEarnt}`;
     }
   }
 
