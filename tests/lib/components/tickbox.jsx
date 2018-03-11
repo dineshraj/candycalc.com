@@ -1,5 +1,5 @@
 import assert from 'assert';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import sinon from 'sinon';
 
 import React from 'react';
@@ -47,11 +47,11 @@ describe('<TickBox />', () => {
     assert.equal(tickBox.find('.tick-box__input').prop('defaultChecked'), false);
   });
 
-  it.skip('calls onClick callback when clicked', () => {
+  it('calls onChange callback on change event', () => {
     const onClickStub = sinon.stub();
-    const tickBox = shallow(<TickBox clickCallback={onClickStub} />);
+    const tickBox = mount(<TickBox changeCallback={onClickStub} />);
 
-    tickBox.find('input').simulate('click');
+    tickBox.find('input').simulate('change');
     sinon.assert.calledOnce(onClickStub);
   });
 
