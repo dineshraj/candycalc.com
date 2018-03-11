@@ -1,6 +1,7 @@
 import path from 'path';
 import fs from 'fs';
 import express from 'express';
+import favicon from 'serve-favicon';
 
 import React from 'react';
 import { renderToString } from 'react-dom/server';
@@ -28,6 +29,12 @@ function handleRender(req, res) {
   });
 }
 
+function handle404(req, res) {
+  res.status(404).send('<h1>404 Not Found</h1>');
+}
+
+app.use(favicon(path.join(__dirname, 'static', 'favicon.png')));
 app.use(express.static(path.join(__dirname, 'build')));
-app.use('/', handleRender);
+app.get('/', handleRender);
+app.get('*', handle404)
 app.listen(port);
