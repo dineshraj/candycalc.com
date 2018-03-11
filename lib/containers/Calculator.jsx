@@ -36,7 +36,7 @@ class Calculator extends React.Component {
     this.props.candyCostDispatch(candyCost);
   }
 
-  _cantEvolve() {
+  _cantEvolveAny() {
     const { pokemonAmount, candyAmount, candyCost } = this.props;
     const totalCost = pokemonAmount * candyCost
 
@@ -78,7 +78,7 @@ class Calculator extends React.Component {
       return this.props.message;
     } else if (pokemonAmount === 0) {
       return `You must have at least one ${pokemonName} if you want to evolve some!`
-    } else if (this._cantEvolve()) {
+    } else if (this._cantEvolveAny()) {
       return `You don't have enough Candy to evolve any of your ${pokemonName}, you need at least ${candyCost}. Catch some more to get more Candy!`;
     } else if (this._canEvolveThemAll()) {
       const candyLeftOver = this._candyLeftOver(pokemonAmount);
