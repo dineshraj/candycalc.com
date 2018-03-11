@@ -22,7 +22,7 @@ describe('reducer', () => {
       luckyEgg: false,
       transfer: false,
       error: false,
-      message: {}
+      message: 'Enter a Pokémon, the number of Pokémon you have and/or the number of Candy you have.'
     };
     const newState = reducer(undefined, { type: '' });
     assert.deepEqual(newState, expectedNewState);
