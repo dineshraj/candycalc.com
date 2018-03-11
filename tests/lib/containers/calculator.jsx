@@ -20,7 +20,7 @@ const initialState = {
   luckyEgg: false,
   transfer: false,
   error: false,
-  results: {},
+  message: 'Enter a Pokémon, the number of Pokémon you have and/or the number of Candy you have.',
   groups: [
     {
       groupId: '12',
@@ -53,9 +53,10 @@ describe('<Calculator />', () => {
 
   it('passes the processed app data into the search component', () => {
     const calculator = shallow(<Calculator store={store} />).dive();
+    const expectedPokemonData = [ [ 'Pidgey', '12' ], [ 'Weedle', '12' ] ];
 
     assert.deepEqual(calculator.find(Search).prop('groups'), store.getState().groups);
-    assert.deepEqual(calculator.find(Search).prop('pokemon'), store.getState().pokemon);
+    assert.deepEqual(expectedPokemonData, store.getState().pokemon);
   });
 
   it('passes in a change callback into the search component', () => {
@@ -91,8 +92,8 @@ describe('<Calculator />', () => {
     });
 
     it('renders two tickbox components', () => {
-      const calculator = shallow(<Calculator store={store} />).dive();
-      assert.equal(calculator.find(TickBox).length, 2);
+      const calculator = mount(<Calculator store={store} />);
+      assert.equal(calculator.find('.tick-box').length, 2);
     });
 
     it('renders the reset input button', () => {
@@ -150,10 +151,12 @@ describe('<Calculator />', () => {
 
   });
 
-  describe.only('calculator logic', () => {
-    afterEach(() => {
+  describe('client side logic', () => {
+    let node;
 
-    });
+    beforeEach(() => {
+      node = document.createElement('div');
+    })
 
     it('displays the default message if pokemonAmount and candyAmount is false', () => {
       const calculator = shallow(<Calculator store={store} />);
@@ -173,9 +176,9 @@ describe('<Calculator />', () => {
     it('does not display default message if candyAmount has a value', () => {
       const store = getMockStore({ candyAmount: 2 });
       const calculator = shallow(<Calculator store={store} />);
-      const message = calculator.dive().find(Message).get(0).props.message;
+      const text = calculator.dive().find(Message).get(0).props.message;
       const defaultText = 'Enter a Pokémon, the number of Pokémon you have and/or the number of Candy you have.';
-      assert.notEqual(message, defaultText);
+      assert.notEqual(text, defaultText);
     });
 
     it('displays the correct message if you have none of the chosen pokemon', () => {
@@ -194,12 +197,12 @@ describe('<Calculator />', () => {
       assert.equal(message, expectedText);
     });
 
-    it.skip('calculates if you can evolve all your pokemon and how much candy is left', () => {
+    it.only('calculates if you can evolve all your pokemon and how much candy is left', () => {
       const store = getMockStore({ pokemonAmount: 1, candyAmount: 28 });
-      const calculator = mount(<Calculator store={store} />);
-      const message = calculator.find(Message).get(0).props.message;
-      const expectedText = 'You can evolve all your Pidgey using your 28 Candy. You\'ll have 16 Candy left over, better go get some more!';
-      assert.include(message, expectedText);
+      const calculator = shallow(<Calculator store={store} />);
+      const message = calculator.dive().find(Message).get(0).props.message;
+      const expectedText = 'You can evolve all your Pidgey using your 28 Candy. You\'ll have 16 Candy left over, better go catch some more!';
+      assert.equal(message, expectedText);
     });
 
     it('calculates how many candy you will have left over');
