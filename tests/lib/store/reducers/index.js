@@ -20,7 +20,8 @@ describe('reducer', () => {
       candyAmount: null,
       luckyEgg: false,
       transfer: false,
-      error: false
+      error: false,
+      results: {}
     };
     const newState = reducer(undefined, { type: '' });
     assert.deepEqual(newState, expectedNewState);
