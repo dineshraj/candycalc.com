@@ -2,7 +2,7 @@ import React from 'react';
 import Label from './Label';
 
 function _updateValue(e, callback) {
-  callback(e.target.value);
+  callback(parseInt(e.target.value, 10));
 }
 
 export default ({ id, label, changeCallback }) => {

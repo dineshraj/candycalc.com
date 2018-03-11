@@ -119,6 +119,8 @@ describe('<Calculator />', () => {
       const calculator = mount(<Calculator store={store} />);
       calculator.find('.entry-box__input').at(0).simulate('change', { target: { value: 1 } } );
       sinon.assert.calledOnce(setPokemonAmountSpy);
+      const pokemonAmount = setPokemonAmountSpy.getCall(0).args[0];
+      assert.equal(typeof pokemonAmount, 'number');
     });
 
     it('calls the setCandyAmount action when the input is changed', () => {
@@ -126,6 +128,8 @@ describe('<Calculator />', () => {
       const calculator = mount(<Calculator store={store} />);
       calculator.find('.entry-box__input').at(1).simulate('change', { target: { value: 1 } } );
       sinon.assert.calledOnce(setCandyAmountSpy);
+      const candyAmount = setCandyAmountSpy.getCall(0).args[0];
+      assert.equal(typeof candyAmount, 'number');
     });
 
     it('calls the setLuckyEgg action when the checkbox is clicked', () => {
