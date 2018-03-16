@@ -76,7 +76,7 @@ class Calculator extends React.Component {
 
     if (!pokemonAmount && !candyAmount) {
       return this.props.message;
-    } else if (pokemonAmount === 0) {
+    } else if (!pokemonAmount) {
       return `You must have at least one ${pokemonName} if you want to evolve some!`
     } else if (this._cantEvolveAny()) {
       return `You don't have enough Candy to evolve any of your ${pokemonName}, you need at least ${candyCost}. Catch some more to get more Candy!`;
