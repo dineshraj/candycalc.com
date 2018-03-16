@@ -96,11 +96,6 @@ describe('<Calculator />', () => {
       assert.equal(calculator.find('.tick-box').length, 2);
     });
 
-    it('renders the reset input button', () => {
-      const calculator = shallow(<Calculator store={store} />).dive();
-      assert.equal(calculator.find('.calculator__reset').length, 1);
-    });
-
   });
 
   describe('dispatches', () => {
@@ -144,13 +139,6 @@ describe('<Calculator />', () => {
       const calculator = mount(<Calculator store={store} />);
       calculator.find('.tick-box__input').at(1).simulate('change');
       sinon.assert.calledOnce(setTransferSpy);
-    });
-
-    it('calls the reset action when the reset button is clicked', () => {
-      const resetSpy = sinon.spy(actions, 'reset');
-      const calculator = shallow(<Calculator store={store} />).dive();
-      calculator.find('.calculator__reset').simulate('click');
-      sinon.assert.calledOnce(resetSpy);
     });
 
   });
