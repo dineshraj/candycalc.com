@@ -2,7 +2,8 @@ const path = require('path');
 const webpack = require('webpack');
 const env = process.env.NODE_ENV || 'production';
 const isProduction = (env === 'production');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const mode = isProduction ? 'production' : 'development';
 
 function getPlugins() {
   return [
@@ -11,19 +12,19 @@ function getPlugins() {
         NODE_ENV: JSON.stringify(env)
       }
     }),
-    new ExtractTextPlugin({ filename: 'bundle.css' }),
+    new MiniCssExtractPlugin({filename: "bundle.css"}),
     ...isProduction ? getProductionPlugins() : []
   ];
 }
 
 function getProductionPlugins() {
   return [
-    new webpack.optimize.UglifyJsPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
   ];
 }
 
 module.exports = {
+  mode,
   entry: path.resolve(__dirname, './'),
   output: {
     path: path.resolve(__dirname, './build'),
@@ -31,7 +32,7 @@ module.exports = {
   },
   devtool: isProduction ? false : 'cheap-module-source-map',
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
@@ -39,16 +40,29 @@ module.exports = {
       },
       {
         test: /\.scss$/,
-        use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: ['css-loader', 'sass-loader']
-        })
+        use: [
+          MiniCssExtractPlugin.loader,
+          {
+            loader: 'css-loader'
+          },
+          {
+            loader: 'sass-loader',
+            options: {
+              sourceMap: true,
+              precision: 8,
+              data: "$ENV: " + "PRODUCTION" + ";"
+            }
+          }
+        ]
       },
       {
         test: /\.(png|jpg)$/,
         use: ['url-loader']
       }
     ]
+  },
+  optimization: {
+    minimize: isProduction
   },
   resolve: {
     extensions: ['.jsx', '.js'],
