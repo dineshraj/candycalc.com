@@ -33,6 +33,7 @@ function getProductionPlugins() {
       dontCacheBustUrlsMatching: /\.\w{8}\./,
       filename: 'service-worker.js',
       mergeStaticsConfig: true,
+      minify: true,
       staticFileGlobsIgnorePatterns: [/\.map$/],
       staticFileGlobs: [
         'https://fonts.gstatic.com',
