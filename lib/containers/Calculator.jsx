@@ -113,12 +113,12 @@ class Calculator extends React.Component {
     return (
       <div className="calculator">
         <form className="calculator__form">
+          <Message message={message} overrideClass="message--info" />
           <Search label="Choose a Pok&eacute;mon" groups={groups} pokemon={pokemonArray} onChange={(e) => this._updatePokemonState(e)}/>
           <EntryBox id="pokemon" label="How many of these Pok&eacute;mon?" changeCallback={pokemonAmountDispatch}/>
           <EntryBox id="candy" label="How many of these candy?" changeCallback={candyAmountDispatch} />
           <TickBox id="luckyEgg" label="Using a Lucky Egg?" isChecked={luckyEgg} changeCallback={luckyEggDispatch} />
           <TickBox id="transfer" label="Transfer evolution?" isChecked={transfer} changeCallback={transferDispatch} />
-          <Message message={message} overrideClass="message--info" />
           <Message message="You can evolve roughly 60 Pokémon in the 30 minutes a Lucky Egg is active for. So try and get as many candy as you can!" overrideClass="message--hint" />
         </form>
       </div>
