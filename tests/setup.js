@@ -16,6 +16,7 @@ const dom = new JSDOM('<!doctype html><html><body><div id="candy-calc"></div></b
 
 global.window = dom.window;
 global.document = dom.window.document;
+global.navigator = {};
 
 // propagateToGlobal(fakeWindow);
 //

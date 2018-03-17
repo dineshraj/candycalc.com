@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-
+import serviceWorker from '../../static/sw'
 import Search from '../components/Search';
 import Message from '../components/Message';
 import EntryBox from '../components/EntryBox';
@@ -92,6 +92,12 @@ class Calculator extends React.Component {
     }
   }
 
+  componentDidMount() {
+    if (navigator !== undefined && ('serviceWorker' in navigator)) {
+      navigator.serviceWorker.register('/service-worker.js');
+    }
+  }
+
   render() {
     const {
       pokemon,
@@ -120,7 +126,6 @@ class Calculator extends React.Component {
         </form>
       </div>
     );
-    // <input type="button" className="calculator__reset" value="Start Again" onClick={resetDispatch} />
   }
 }
 

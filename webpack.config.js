@@ -3,6 +3,7 @@ const webpack = require('webpack');
 const env = process.env.NODE_ENV || 'production';
 const isProduction = (env === 'production');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin');
 const mode = isProduction ? 'production' : 'development';
 
 function getPlugins() {
@@ -20,6 +21,17 @@ function getPlugins() {
 function getProductionPlugins() {
   return [
     new webpack.NoEmitOnErrorsPlugin(),
+    new SWPrecacheWebpackPlugin({
+      cacheId: 'candycalc:0004',
+      dontCacheBustUrlsMatching: /\.\w{8}\./,
+      filename: 'service-worker.js',
+      mergeStaticsConfig: true,
+      staticFileGlobsIgnorePatterns: [/\.map$/],
+      staticFileGlobs: [
+        'https://fonts.gstatic.com',
+        'https://fonts.googleapis.com'
+      ]
+    }),
   ];
 }
 
