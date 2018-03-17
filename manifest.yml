@@ -1,4 +1,3 @@
 ---
+applications:
 - name: CandyCalc
-  env:
-    env_type: production
