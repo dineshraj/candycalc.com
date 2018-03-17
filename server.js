@@ -33,7 +33,6 @@ function handle404(req, res) {
   res.status(404).send('<h1>404 Not Found</h1>');
 }
 
-app.use(favicon(path.join(__dirname, 'static', 'favicon.png')));
 app.use(express.static(path.join(__dirname, 'build')));
 app.get('/', handleRender);
 app.get('*', handle404)
