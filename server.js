@@ -36,3 +36,4 @@ app.use(express.static(path.join(__dirname, 'build')));
 app.get('/', handleRender);
 app.get('*', handle404);
 app.listen(port);
+console.log(`listening on port ${port}`);
