@@ -8,8 +8,7 @@ import {
   setLuckyEgg,
   setTransfer,
   setMessage,
-  setError,
-  reset
+  setError
 } from '../../../../lib/store/actions/';
 
 describe('reducer', () => {
@@ -82,14 +81,6 @@ describe('reducer', () => {
     const newState = reducer({ existing: 'state' }, actionData);
     assert.equal(newState.existing, 'state');
     assert.equal(newState.message, 'some-message-value');
-  });
-
-  it('resets the state when reset action is called', () => {
-    const transferActionData = setTransfer('some-transfer-value');
-    reducer({ existing: 'state' }, transferActionData);
-    const resetActionData = reset();
-    const newState = reducer({ existing: 'state' }, resetActionData);
-    assert.deepEqual(newState, { existing: 'state'} );
   });
 
 });

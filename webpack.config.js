@@ -2,8 +2,8 @@ const path = require('path');
 const webpack = require('webpack');
 const env = process.env.NODE_ENV || 'production';
 const isProduction = (env === 'production');
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin');
 
 
@@ -71,7 +71,7 @@ module.exports = {
             options: {
               sourceMap: true,
               precision: 8,
-              data: "$ENV: " + "PRODUCTION" + ";"
+              data: '$ENV: ' + 'PRODUCTION' + ';'
             }
           }
         ]
@@ -81,7 +81,7 @@ module.exports = {
         use: [{
           loader: 'url-loader',
           options: {
-              limit: 4096
+            limit: 4096
           }
         }]
       }

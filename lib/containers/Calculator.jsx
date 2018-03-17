@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import serviceWorker from '../../static/sw'
+
 import Search from '../components/Search';
 import Message from '../components/Message';
 import EntryBox from '../components/EntryBox';
@@ -11,9 +11,7 @@ import {
   setPokemonAmount,
   setCandyAmount,
   setLuckyEgg,
-  setTransfer,
-  setResults,
-  reset
+  setTransfer
 } from '../store/actions/';
 
 class Calculator extends React.Component {
@@ -38,13 +36,13 @@ class Calculator extends React.Component {
 
   _cantEvolveAny() {
     const { pokemonAmount, candyAmount, candyCost } = this.props;
-    const totalCost = pokemonAmount * candyCost
+    const totalCost = pokemonAmount * candyCost;
 
     return (totalCost > candyAmount) && (candyAmount / candyCost) < 1;
   }
 
   _addTransferCandy(numberEvolved) {
-    const { transfer, pokemonAmount } = this.props;
+    const { transfer } = this.props;
     return transfer ? numberEvolved : 0;
   }
 
@@ -54,13 +52,13 @@ class Calculator extends React.Component {
   }
 
   _candyLeftOver(numberEvolved) {
-    const { pokemonAmount, candyAmount, candyCost } = this.props;
+    const { candyAmount, candyCost } = this.props;
     const totalCandyAmount = candyAmount + numberEvolved + this._addTransferCandy(numberEvolved);
     return totalCandyAmount - ( numberEvolved * candyCost );
   }
 
   _xpEarned(numberToEvolve) {
-    const { luckyEgg } = this.props
+    const { luckyEgg } = this.props;
     const multiplier = luckyEgg ? 1000 : 500;
     return `You'll earn ${multiplier * numberToEvolve} XP`;
   }
@@ -77,18 +75,18 @@ class Calculator extends React.Component {
     if (!pokemonAmount && !candyAmount) {
       return this.props.message;
     } else if (!pokemonAmount) {
-      return `You must have at least one ${pokemonName} if you want to evolve some!`
+      return `You must have at least one ${pokemonName} if you want to evolve some!`;
     } else if (this._cantEvolveAny()) {
       return `You don't have enough Candy to evolve any of your ${pokemonName}, you need at least ${candyCost}. Catch some more to get more Candy!`;
     } else if (this._canEvolveThemAll()) {
       const candyLeftOver = this._candyLeftOver(pokemonAmount);
       const xpEarnt = this._xpEarned(pokemonAmount);
-      return `You can evolve all your ${pokemonName} using your ${candyAmount} Candy${transferText}. You\'ll have ${candyLeftOver} Candy left over, better go catch some more! ${xpEarnt}`
+      return `You can evolve all your ${pokemonName} using your ${candyAmount} Candy${transferText}. You'll have ${candyLeftOver} Candy left over, better go catch some more! ${xpEarnt}`;
     } else {
       const maxCanEvolve = this._maximumCanEvolve();
       const xpEarnt = this._xpEarned(maxCanEvolve);
       const candyLeftOver = this._candyLeftOver(maxCanEvolve);
-      return `You can evolve ${maxCanEvolve} of your ${pokemonAmount} ${pokemonName}${transferText}. You\'ll have ${candyLeftOver} Candy left over, better go catch some more! ${xpEarnt}`;
+      return `You can evolve ${maxCanEvolve} of your ${pokemonAmount} ${pokemonName}${transferText}. You'll have ${candyLeftOver} Candy left over, better go catch some more! ${xpEarnt}`;
     }
   }
 
@@ -107,8 +105,7 @@ class Calculator extends React.Component {
       pokemonAmountDispatch,
       candyAmountDispatch,
       luckyEggDispatch,
-      transferDispatch,
-      resetDispatch
+      transferDispatch
     } = this.props;
     const pokemonArray = this._processPokemon(pokemon);
     const message = this._renderMessage();
@@ -142,8 +139,7 @@ function mapDispatchToProps(dispatch) {
     pokemonAmountDispatch: (payload) => dispatch(setPokemonAmount(payload)),
     candyAmountDispatch: (payload) => dispatch(setCandyAmount(payload)),
     luckyEggDispatch: (payload) => dispatch(setLuckyEgg(payload)),
-    transferDispatch: (payload) => dispatch(setTransfer(payload)),
-    resetDispatch: () => dispatch(reset())
+    transferDispatch: (payload) => dispatch(setTransfer(payload))
   };
 }
 

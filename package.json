@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.jsx",
   "scripts": {
+    "start": "nodemon ./server.js --exec babel-node",
     "test": "mocha --require tests/setup.js --require ignore-styles --recursive './tests/**/*.{js,jsx}'",
     "build": "npm t && webpack",
-    "start": "nodemon ./server.js --exec babel-node",
     "build:dev": "NODE_ENV=dev webpack --display-error-details",
     "clean": "rm -rf ./build",
     "lint": "./node_modules/.bin/eslint . --ext=js,jsx"

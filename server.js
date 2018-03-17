@@ -1,7 +1,6 @@
 import path from 'path';
 import fs from 'fs';
 import express from 'express';
-import favicon from 'serve-favicon';
 
 import React from 'react';
 import { renderToString } from 'react-dom/server';
@@ -35,5 +34,5 @@ function handle404(req, res) {
 
 app.use(express.static(path.join(__dirname, 'build')));
 app.get('/', handleRender);
-app.get('*', handle404)
+app.get('*', handle404);
 app.listen(port);

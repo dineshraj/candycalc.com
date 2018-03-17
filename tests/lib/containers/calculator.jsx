@@ -144,11 +144,6 @@ describe('<Calculator />', () => {
   });
 
   describe('app logic', () => {
-    let node;
-
-    beforeEach(() => {
-      node = document.createElement('div');
-    })
 
     it('displays the default message if pokemonAmount and candyAmount is false', () => {
       const calculator = shallow(<Calculator store={store} />);
