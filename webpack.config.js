@@ -3,7 +3,10 @@ const webpack = require('webpack');
 const env = process.env.NODE_ENV || 'production';
 const isProduction = (env === 'production');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin');
+
+
 const mode = isProduction ? 'production' : 'development';
 
 function getPlugins() {
@@ -13,14 +16,18 @@ function getPlugins() {
         NODE_ENV: JSON.stringify(env)
       }
     }),
-    new MiniCssExtractPlugin({filename: "bundle.css"}),
+    new HtmlWebpackPlugin({
+      title: 'Candy Calculator - Pokemon Go Lucky Egg and Candy Evolution Calculator',
+      template: 'views/index.html',
+      favicon: 'static/favicon.png'
+    }),
+    new MiniCssExtractPlugin({filename: 'bundle.[chunkhash].css'}),
     ...isProduction ? getProductionPlugins() : []
   ];
 }
 
 function getProductionPlugins() {
   return [
-    new webpack.NoEmitOnErrorsPlugin(),
     new SWPrecacheWebpackPlugin({
       cacheId: 'candycalc:0004',
       dontCacheBustUrlsMatching: /\.\w{8}\./,
@@ -32,6 +39,7 @@ function getProductionPlugins() {
         'https://fonts.googleapis.com'
       ]
     }),
+    new webpack.NoEmitOnErrorsPlugin()
   ];
 }
 
@@ -40,7 +48,7 @@ module.exports = {
   entry: path.resolve(__dirname, './'),
   output: {
     path: path.resolve(__dirname, './build'),
-    filename: 'index.js'
+    filename: 'index.[chunkhash].js'
   },
   devtool: isProduction ? false : 'cheap-module-source-map',
   module: {
@@ -69,7 +77,12 @@ module.exports = {
       },
       {
         test: /\.(png|jpg)$/,
-        use: ['url-loader']
+        use: [{
+          loader: 'url-loader',
+          options: {
+              limit: 4096
+          }
+        }]
       }
     ]
   },
