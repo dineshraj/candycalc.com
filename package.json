@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.jsx",
   "scripts": {
-    "build": "rm -rf ./build && mkdir ./build && cp ./static/fb-share.jpg ./build/fb-share.jpg && webpack",
+    "build": "npm run clean && cp ./static/fb-share.jpg ./build/fb-share.jpg && webpack",
     "build:dev": "NODE_ENV=dev webpack --display-error-details",
+    "deploy": "npm run build && cf push",
     "start": "babel-node server.js",
     "debug": "nodemon ./server.js --exec babel-node",
     "test": "mocha --require tests/setup.js --require ignore-styles --recursive './tests/**/*.{js,jsx}'",
