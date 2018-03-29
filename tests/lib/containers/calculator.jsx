@@ -91,9 +91,9 @@ describe('<Calculator />', () => {
       assert.equal(calculator.find(EntryBox).length, 2);
     });
 
-    it('renders two tickbox components', () => {
+    it.only('renders two tickbox components', () => {
       const calculator = mount(<Calculator store={store} />);
-      assert.equal(calculator.find('.tick-box').length, 2);
+      assert.equal(calculator.find(TickBox).length, 2);
     });
 
   });

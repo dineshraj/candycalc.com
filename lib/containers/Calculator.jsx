@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import Search from '../components/Search';
 import Message from '../components/Message';
 import EntryBox from '../components/EntryBox';
-import TickBox from '../components/Tickbox';
+import TickBox from '../components/TickBox';
 import {
   setPokemonName,
   setCandyCost,
