@@ -5,7 +5,7 @@ const isProduction = (env === 'production');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin');
-
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 const mode = isProduction ? 'production' : 'development';
 
@@ -22,6 +22,7 @@ function getPlugins() {
       favicon: 'static/favicon.png'
     }),
     new MiniCssExtractPlugin({filename: 'bundle.[chunkhash].css'}),
+    // new BundleAnalyzerPlugin(),
     ...isProduction ? getProductionPlugins() : []
   ];
 }
