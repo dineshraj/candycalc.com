@@ -3,12 +3,12 @@ import { shallow, mount } from 'enzyme';
 import sinon from 'sinon';
 
 import React from 'react';
-import Calculator from '../../../lib/containers/Calculator';
-import Search from '../../../lib/components/Search';
-import Message from '../../../lib/components/Message';
-import EntryBox from '../../../lib/components/EntryBox';
-import TickBox from '../../../lib/components/TickBox';
-import * as actions from '../../../lib/store/actions';
+import Calculator from '../../../src/containers/Calculator';
+import Search from '../../../src/components/Search';
+import Message from '../../../src/components/Message';
+import EntryBox from '../../../src/components/EntryBox';
+import TickBox from '../../../src/components/TickBox';
+import * as actions from '../../../src/store/actions';
 import configureStore from 'redux-mock-store';
 
 const mockStore = configureStore();

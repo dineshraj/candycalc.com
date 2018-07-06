@@ -2,7 +2,7 @@ import assert from 'assert';
 import { shallow } from 'enzyme';
 
 import React from 'react';
-import Message from '../../../lib/components/Message';
+import Message from '../../../src/components/Message';
 
 describe('<Message />', () => {
 

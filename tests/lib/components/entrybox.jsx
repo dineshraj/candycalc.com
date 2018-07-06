@@ -3,8 +3,8 @@ import { shallow } from 'enzyme';
 import sinon from 'sinon';
 
 import React from 'react';
-import EntryBox from '../../../lib/components/EntryBox';
-import Label from '../../../lib/components/Label';
+import EntryBox from '../../../src/components/EntryBox';
+import Label from '../../../src/components/Label';
 
 describe('<EntryBox />', () => {
 

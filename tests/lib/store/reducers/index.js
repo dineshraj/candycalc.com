@@ -1,5 +1,5 @@
 import assert from 'assert';
-import reducer from '../../../../lib/store/reducers/';
+import reducer from '../../../../src/store/reducers/';
 import {
   setPokemonName,
   setCandyCost,
@@ -9,7 +9,7 @@ import {
   setTransfer,
   setMessage,
   setError
-} from '../../../../lib/store/actions/';
+} from '../../../../src/store/actions/';
 
 describe('reducer', () => {
   it('returns the default state', () => {

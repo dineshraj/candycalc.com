@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import configureStore from './lib/store/configureStore';
-import * as AppMain from './lib/containers/App.jsx';
+import configureStore from './src/store/configureStore';
+import * as AppMain from './src/containers/App.jsx';
 
 import './styles/index.scss';
 

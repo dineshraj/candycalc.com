@@ -3,8 +3,8 @@ import { shallow, mount } from 'enzyme';
 import sinon from 'sinon';
 
 import React from 'react';
-import TickBox from '../../../lib/components/TickBox';
-import Label from '../../../lib/components/Label';
+import TickBox from '../../../src/components/TickBox';
+import Label from '../../../src/components/Label';
 
 describe('<TickBox />', () => {
 

@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 import sinon from 'sinon';
 
 import React from 'react';
-import Search from '../../../lib/components/Search';
+import Search from '../../../src/components/Search';
 import { SimpleSelect } from 'react-selectize';
 
 const pokemonData = [

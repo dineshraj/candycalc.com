@@ -2,7 +2,7 @@ import assert from 'assert';
 import { shallow } from 'enzyme';
 
 import React from 'react';
-import Label from '../../../lib/components/Label';
+import Label from '../../../src/components/Label';
 
 describe('<Label />', () => {
 

@@ -5,8 +5,8 @@ import express from 'express';
 import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { Provider } from 'react-redux';
-import configureStore from './lib/store/configureStore';
-import * as AppMain from './lib/containers/App';
+import configureStore from './src/store/configureStore';
+import * as AppMain from './src/containers/App';
 
 const port = process.env.PORT || 3000;
 const app = express();

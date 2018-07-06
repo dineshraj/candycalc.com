@@ -2,7 +2,7 @@ import assert from 'assert';
 import { shallow } from 'enzyme';
 
 import React from 'react';
-import Ad from '../../../lib/components/Ad';
+import Ad from '../../../src/components/Ad';
 
 describe('<Ad />', () => {
 
