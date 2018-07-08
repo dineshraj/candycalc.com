@@ -1,8 +1,14 @@
 .search {
 
   &.react-selectize {
-    margin: 0 78px 20px;
-    width: 670px;
+
+    margin-bottom: 20px;
+    width: 100%;
+
+    @include bp('med') {
+      margin: 0 78px 20px;
+      width: 670px;
+    }
   }
 
   .simple-group-title {
