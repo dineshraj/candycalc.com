@@ -1,11 +1,11 @@
 .calculator {
-  @include bp('med') {
+  @include bp('large') {
+    background: url('../static/pikachu.png') no-repeat -84px center;
     background-position: -108px center;
     background-size: 270px;
     padding-top: 20px;
   }
 
-  background: url('../static/pikachu.png') no-repeat -84px center;
   background-size: 208px;
   box-sizing: border-box;
   padding: 10px;

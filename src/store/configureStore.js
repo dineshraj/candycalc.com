@@ -1,7 +1,7 @@
 import { createStore } from 'redux';
 import rootReducer from './reducers';
 
-import data from '../../static/data.json';
+import data from '../static/data.json';
 
 const initialState =
   Object.assign(

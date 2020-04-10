@@ -18,8 +18,8 @@ function getPlugins() {
     }),
     new HtmlWebpackPlugin({
       title: 'Candy Calculator - Pokemon Go Lucky Egg and Candy Evolution Calculator',
-      template: 'views/index.html',
-      favicon: 'static/favicon.png'
+      template: 'src/views/index.html',
+      favicon: 'src/static/favicon.png'
     }),
     new MiniCssExtractPlugin({filename: 'bundle.[chunkhash].css'}),
     // new BundleAnalyzerPlugin(),
