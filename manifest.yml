@@ -1,4 +1,5 @@
----
 applications:
-- name: CandyCalc
+  - name: CandyCalc
   memory: 256M
+  
+  ---

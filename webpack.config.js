@@ -6,7 +6,6 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
-
 const mode = isProduction ? 'production' : 'development';
 
 function getPlugins() {
@@ -18,10 +17,11 @@ function getPlugins() {
     }),
     new HtmlWebpackPlugin({
       title: 'Candy Calculator - Pokemon Go Lucky Egg and Candy Evolution Calculator',
-      template: 'src/views/index.html',
-      favicon: 'src/static/favicon.png'
+      template: 'src/views/main.html',
+      favicon: 'src/static/favicon.png',
+      filename: 'main.html'
     }),
-    new MiniCssExtractPlugin({filename: 'bundle.[chunkhash].css'}),
+    new MiniCssExtractPlugin({filename: 'styles.[chunkhash].css'}),
     // new BundleAnalyzerPlugin(),
     ...isProduction ? getProductionPlugins() : []
   ];
@@ -49,8 +49,8 @@ module.exports = {
   mode,
   entry: path.resolve(__dirname, './'),
   output: {
-    path: path.resolve(__dirname, './build'),
-    filename: 'index.[chunkhash].js'
+    path: path.resolve(__dirname, './build/'),
+    filename: 'index.[chunkhash].js',
   },
   devtool: isProduction ? false : 'cheap-module-source-map',
   module: {
@@ -82,7 +82,7 @@ module.exports = {
         use: [{
           loader: 'url-loader',
           options: {
-            limit: 4096
+            limit: 1024
           }
         }]
       }

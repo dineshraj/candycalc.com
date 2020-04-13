@@ -7,12 +7,13 @@ import { renderToString } from 'react-dom/server';
 import { Provider } from 'react-redux';
 import configureStore from './src/store/configureStore';
 import * as AppMain from './src/containers/App';
+import { render } from 'enzyme';
 
 const port = process.env.PORT || 3000;
 const app = express();
 const store = configureStore();
 
-app.enable('trust proxy');
+// app.enable('trust proxy');
 
 function handleRender(req, res) {
   const html = renderToString(
@@ -20,19 +21,24 @@ function handleRender(req, res) {
       <AppMain.App />
     </Provider>
   );
+  
+  
+  fs.readFile('build/main.html', 'utf8', (err, data) => {
+    if (err) {
+      throw err;
+    }
 
-  fs.readFile('views/index.html', 'utf8', (err, data) => {
     const document = data.replace(
       /<div id="candy-calc"><\/div>/,
       `<div id="candy-calc">${html}</div>`
     );
-    res.send(document);
+    res.send(document);    
   });
 }
 
-function handle404(req, res) {
-  res.status(404).send('<h1>404 Not Found</h1>');
-}
+// function handle404(req, res) {
+//   res.status(404).send('<h1>404 Not Found</h1>');
+// }
 
 app.use((req, res, next) => {
   if (req.secure || process.env.BLUEMIX_REGION === undefined) {
@@ -43,7 +49,9 @@ app.use((req, res, next) => {
   }
 });
 app.use(express.static(path.join(__dirname, 'build')));
+
+
 app.get('/', handleRender);
-app.get('*', handle404);
-app.listen(port);
-console.log(`listening on port ${port}`);
+// app.get('*', handle404);
+
+app.listen(port, () => console.log(`listening on port ${port}`));
