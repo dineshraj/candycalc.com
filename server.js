@@ -7,7 +7,6 @@ import { renderToString } from 'react-dom/server';
 import { Provider } from 'react-redux';
 import configureStore from './src/store/configureStore';
 import * as AppMain from './src/containers/App';
-import { render } from 'enzyme';
 
 const port = process.env.PORT || 3000;
 const app = express();
