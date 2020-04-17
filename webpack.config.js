@@ -21,7 +21,7 @@ function getPlugins() {
       favicon: 'src/static/favicon.png',
       filename: 'main.html'
     }),
-    new MiniCssExtractPlugin({filename: 'styles.[chunkhash].css'}),
+    new MiniCssExtractPlugin({filename: 'style.[chunkhash].css'}),
     // new BundleAnalyzerPlugin(),
     ...isProduction ? getProductionPlugins() : []
   ];
@@ -49,8 +49,9 @@ module.exports = {
   mode,
   entry: path.resolve(__dirname, './'),
   output: {
-    path: path.resolve(__dirname, './build/'),
+    path: path.resolve(__dirname, './public'),
     filename: 'index.[chunkhash].js',
+    publicPath: './'
   },
   devtool: isProduction ? false : 'cheap-module-source-map',
   module: {

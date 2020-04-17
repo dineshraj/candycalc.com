@@ -4,13 +4,14 @@
   "description": "",
   "main": "index.jsx",
   "scripts": {
-    "build": "npm run clean && cp ./src/static/fb-share.jpg ./build/fb-share.jpg && webpack",
-    "build:dev": "NODE_ENV=dev webpack --display-error-details",
+    "build": "npm run clean && cp ./src/static/fb-share.jpg ./dist/public/fb-share.jpg && npm run babel && webpack --config dist/webpack.config.js",
+    "babel": "babel . --out-dir ./dist/ --source-maps --copy-files --ignore node_modules,tests",
+    "build:dev": "NODE_ENV=dev && webpack --display-error-details",
     "deploy": "npm run build && cf push",
-    "start": "babel-node server.js",
+    "start": "node ./dist/server.js",
     "debug": "nodemon ./server.js --exec babel-node",
     "test": "mocha --require tests/setup.js --require ignore-styles --recursive './tests/**/*.{js,jsx}'",
-    "clean": "rm -rf ./build && mkdir ./build",
+    "clean": "rm -rf ./dist && mkdir -p ./dist/public",
     "lint": "./node_modules/.bin/eslint . --ext=js,jsx"
   },
   "keywords": [],
@@ -36,6 +37,7 @@
     "sinon": "^4.1.3",
     "style-loader": "^0.19.1",
     "url-loader": "^0.6.2",
+    "webpack": "^4.42.1",
     "webpack-bundle-analyzer": "^2.11.1"
   },
   "dependencies": {
@@ -61,7 +63,6 @@
     "redux": "^3.7.2",
     "serve-favicon": "^2.4.5",
     "sw-precache-webpack-plugin": "^0.11.5",
-    "webpack": "^4.42.1",
     "webpack-cli": "^3.1.1"
   }
 }

@@ -13,8 +13,6 @@ const port = process.env.PORT || 3000;
 const app = express();
 const store = configureStore();
 
-// app.enable('trust proxy');
-
 function handleRender(req, res) {
   const html = renderToString(
     <Provider store={store}>
@@ -23,7 +21,7 @@ function handleRender(req, res) {
   );
   
   
-  fs.readFile('build/main.html', 'utf8', (err, data) => {
+  fs.readFile('dist/public/main.html', 'utf8', (err, data) => {
     if (err) {
       throw err;
     }
@@ -48,7 +46,7 @@ app.use((req, res, next) => {
     res.redirect('https://' + req.headers.host + req.url);
   }
 });
-app.use(express.static(path.join(__dirname, 'build')));
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', handleRender);
 app.get('*', handle404);
