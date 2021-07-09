@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.jsx",
   "scripts": {
-    "build": "npm run clean && cp ./src/static/fb-share.jpg ./dist/public/fb-share.jpg && npm run babel && webpack --config dist/webpack.config.js",
+    "build": "npm run clean && npm run babel && webpack --config dist/webpack.config.js && cp ./src/static/fb-share.jpg dist/public/fb-share.jpg",
     "babel": "babel . --out-dir ./dist/ --source-maps --copy-files --ignore node_modules,tests",
     "build:dev": "NODE_ENV=dev && webpack --display-error-details",
     "deploy": "npm run build && cf push",

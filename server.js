@@ -12,6 +12,9 @@ const port = process.env.PORT || 3000;
 const app = express();
 const store = configureStore();
 
+// for IBM cloud
+app.enable('trust proxy');
+
 function handleRender(req, res) {
   const html = renderToString(
     <Provider store={store}>
